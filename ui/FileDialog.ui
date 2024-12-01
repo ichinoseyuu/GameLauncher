@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>418</width>
+    <height>318</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>418</width>
+    <height>318</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="StyleSheet" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>418</width>
+     <height>318</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>418</width>
+     <height>318</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>418</width>
+     <height>318</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#TitleWidget {
+    border-bottom: 1px solid rgb(235, 235, 235);
+    background-color: rgb(250, 245, 245);
+}
+
+#Title {
+	font-family: &quot;微软雅黑&quot;;
+    font: 11pt;
+    border: none;
+    background-color: transparent;
+    color: rgb(60, 60, 60);
+}
+
+#TitleWidget QPushButton {
+    background-color: transparent;
+}
+
+#TitleWidget QPushButton:hover {
+    background-color: gainsboro;
+    border-radius: 2px;
+}
+
+#TitleWidget QPushButton:pressed {
+    background-color: lightgray;
+    border-radius: 2px;
+}
+
+/*=========================*/
+
+#DialogWidget {
+    background-color: rgb(255, 246, 248);
+}
+#ButtonChooseFolder{
+    background-color: rgb(235, 235, 235);
+	font-family: &quot;微软雅黑&quot;;
+	font-size: 10pt;
+	color: rgb(80, 80, 80);
+    border-radius: 2px;
+}
+
+#ButtonChooseFolder:hover {
+    background-color: gainsboro;
+    border-radius: 2px;
+}
+
+#ButtonChooseFolder:pressed {
+    background-color: lightgray;
+    border-radius: 2px;
+}
+
+#FolderPathLineEdit {
+	font-family: &quot;微软雅黑&quot;;
+    font: 10pt;
+    border: 1px solid gainsboro;
+	border-radius: 2px;
+    background-color: transparent;
+    color: dimgray;
+}
+
+#FolderNameLineEdit {
+	font-family: &quot;微软雅黑&quot;;
+    font: 10pt;
+    border: 1px solid gainsboro;
+	border-radius: 2px;
+    background-color: transparent;
+    color: dimgray;
+}
+
+/*=========================*/
+#DefaultWidget {
+    border-bottom: 1px solid rgb(235, 235, 235);
+    background-color: rgb(250, 245, 245);
+}
+#ButtonCancel{
+    background-color: rgb(235, 235, 235);
+	font-family: &quot;微软雅黑&quot;;
+	font-size: 10pt;
+	color: rgb(80, 80, 80);
+    border-radius: 2px;
+}
+
+#ButtonCancel:hover {
+    background-color: gainsboro;
+    border-radius: 2px;
+}
+
+#ButtonCancel:pressed {
+    background-color: lightgray;
+    border-radius: 2px;
+}
+
+#ButtonOk {
+    background-color: rgb(208, 178, 224);
+	font-family: &quot;微软雅黑&quot;;
+	font-size: 10pt;
+	color: rgb(255, 255, 255);
+    border-radius: 2px;
+}
+
+#ButtonOk:hover {
+    background-color: rgb(197, 172, 227);
+    border-radius: 2px;
+}
+
+#ButtonOk:pressed {
+    background-color: rgb(181, 164, 232);
+    border-radius: 2px;
+}</string>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>9</number>
+    </property>
+    <property name="topMargin">
+     <number>9</number>
+    </property>
+    <property name="rightMargin">
+     <number>9</number>
+    </property>
+    <property name="bottomMargin">
+     <number>9</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="TitleWidget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>40</height>
+       </size>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="Title">
+         <property name="text">
+          <string>标题</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignmentFlag::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="ButtonExit">
+         <property name="minimumSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="toolTip">
+          <string>关闭</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resources/resources.qrc">
+           <normaloff>:/button_images/close_32px.png</normaloff>:/button_images/close_32px.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="DialogWidget" native="true">
+      <property name="layoutDirection">
+       <enum>Qt::LayoutDirection::RightToLeft</enum>
+      </property>
+      <widget class="QLineEdit" name="FolderNameLineEdit">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>110</y>
+         <width>381</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="placeholderText">
+        <string>请输入名称</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="FolderPathLineEdit">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>50</y>
+         <width>341</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string>请选择文件夹</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="ButtonChooseFolder">
+       <property name="geometry">
+        <rect>
+         <x>360</x>
+         <y>50</y>
+         <width>32</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>32</width>
+         <height>32</height>
+        </size>
+       </property>
+       <property name="toolTip">
+        <string>选择文件夹</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="../resources/resources.qrc">
+         <normaloff>:/button_images/file_32px.png</normaloff>:/button_images/file_32px.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
+      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="DefaultWidget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>50</height>
+       </size>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>15</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Orientation::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="ButtonOk">
+         <property name="minimumSize">
+          <size>
+           <width>60</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>60</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>确定</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="ButtonCancel">
+         <property name="minimumSize">
+          <size>
+           <width>60</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>60</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>取消</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,29 @@
+<RCC>
+  <qresource prefix="button_images">
+    <file>max_32px.png</file>
+    <file>theme_32px.png</file>
+    <file>about_32px.png</file>
+    <file>add_32px.png</file>
+    <file>change_theme_32px.png</file>
+    <file>close_32px.png</file>
+    <file>delete_32px.png</file>
+    <file>edit_off_32px.png</file>
+    <file>edit_on_32px.png</file>
+    <file>file_32px.png</file>
+    <file>game_32px.png</file>
+    <file>home_32px.png</file>
+    <file>min_32px.png</file>
+    <file>multi_select_32px.png</file>
+    <file>next_step_32px.png</file>
+    <file>Return_32px.png</file>
+    <file>Settings_32px.png</file>
+    <file>switch_game_32px.png</file>
+  </qresource>
+  <qresource prefix="background">
+    <file>BackGround.png</file>
+  </qresource>
+  <qresource prefix="icon">
+    <file>icon_32px.png</file>
+    <file>icon_64px.png</file>
+  </qresource>
+</RCC>

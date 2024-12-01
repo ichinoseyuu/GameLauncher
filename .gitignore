@@ -1,0 +1,12 @@
+__pycache__/
+.vscode/
+resources/素材/
+test/
+
+*.pyc
+*.png
+*.psd
+
+build/
+dist/
+main.spec

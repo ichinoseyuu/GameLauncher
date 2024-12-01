@@ -38,7 +38,7 @@
 }
 
 #Icon{
-	image: url(:/icon/icon_32px.png);
+	image: url(:/images/icon/icon.png);
 }
 
 #TitleWidget QPushButton {
@@ -87,7 +87,7 @@
 }
 
 #HomeLabel{
-	image: url(:/background/BackGround.png);
+	image: url(:/images/back_ground/home_bg.png);
 }
 
 #PathSetLabel{
@@ -277,7 +277,7 @@
 }
 
 #SoftwarePic{
-	image: url(:/icon/icon_64px.png);
+	image: url(:/images/icon/icon.png);
 }
 
 #SoftwareName{
@@ -432,7 +432,7 @@ QTextEdit {
          </property>
          <property name="icon">
           <iconset resource="../resources/resources.qrc">
-           <normaloff>:/button_images/min_32px.png</normaloff>:/button_images/min_32px.png</iconset>
+           <normaloff>:/btn/title_bar/minimize.png</normaloff>:/btn/title_bar/minimize.png</iconset>
          </property>
         </widget>
        </item>
@@ -455,7 +455,7 @@ QTextEdit {
          </property>
          <property name="icon">
           <iconset resource="../resources/resources.qrc">
-           <normaloff>:/button_images/close_32px.png</normaloff>:/button_images/close_32px.png</iconset>
+           <normaloff>:/btn/title_bar/shutdown.png</normaloff>:/btn/title_bar/shutdown.png</iconset>
          </property>
         </widget>
        </item>
@@ -514,7 +514,7 @@ QTextEdit {
             </property>
             <property name="icon">
              <iconset resource="../resources/resources.qrc">
-              <normaloff>:/button_images/home_32px.png</normaloff>:/button_images/home_32px.png</iconset>
+              <normaloff>:/btn/left_widget/home.png</normaloff>:/btn/left_widget/home.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -543,7 +543,7 @@ QTextEdit {
             </property>
             <property name="icon">
              <iconset resource="../resources/resources.qrc">
-              <normaloff>:/button_images/game_32px.png</normaloff>:/button_images/game_32px.png</iconset>
+              <normaloff>:/btn/left_widget/start.png</normaloff>:/btn/left_widget/start.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -572,7 +572,7 @@ QTextEdit {
             </property>
             <property name="icon">
              <iconset resource="../resources/resources.qrc">
-              <normaloff>:/button_images/about_32px.png</normaloff>:/button_images/about_32px.png</iconset>
+              <normaloff>:/btn/left_widget/about.png</normaloff>:/btn/left_widget/about.png</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -614,13 +614,17 @@ QTextEdit {
             </property>
             <property name="icon">
              <iconset resource="../resources/resources.qrc">
-              <normaloff>:/button_images/about_32px.png</normaloff>:/button_images/about_32px.png</iconset>
+              <normaloff>:/btn/left_widget/dark_theme.png</normaloff>
+              <normalon>:/btn/left_widget/light_theme.png</normalon>:/btn/left_widget/dark_theme.png</iconset>
             </property>
             <property name="iconSize">
              <size>
               <width>24</width>
               <height>24</height>
              </size>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
@@ -630,7 +634,7 @@ QTextEdit {
        <item>
         <widget class="QStackedWidget" name="StackedWidget">
          <property name="currentIndex">
-          <number>2</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="HomePage">
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -699,7 +703,13 @@ QTextEdit {
               </property>
               <property name="icon">
                <iconset resource="../resources/resources.qrc">
-                <normaloff>:/button_images/add_32px.png</normaloff>:/button_images/add_32px.png</iconset>
+                <normaloff>:/btn/main_widget/increase.png</normaloff>:/btn/main_widget/increase.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
               </property>
              </widget>
              <widget class="QWidget" name="PathSetTopWidget" native="true">
@@ -765,7 +775,7 @@ QTextEdit {
                  </property>
                  <property name="icon">
                   <iconset resource="../resources/resources.qrc">
-                   <normaloff>:/button_images/next_step_32px.png</normaloff>:/button_images/next_step_32px.png</iconset>
+                   <normaloff>:/btn/main_widget/next.png</normaloff>:/btn/main_widget/next.png</iconset>
                  </property>
                 </widget>
                </item>
@@ -800,7 +810,7 @@ QTextEdit {
               </property>
               <property name="icon">
                <iconset resource="../resources/resources.qrc">
-                <normaloff>:/button_images/switch_game_32px.png</normaloff>:/button_images/switch_game_32px.png</iconset>
+                <normaloff>:/btn/main_widget/switch.png</normaloff>:/btn/main_widget/switch.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -959,8 +969,8 @@ QTextEdit {
                     </property>
                     <property name="icon">
                      <iconset resource="../resources/resources.qrc">
-                      <normaloff>:/button_images/edit_off_32px.png</normaloff>
-                      <normalon>:/button_images/edit_on_32px.png</normalon>:/button_images/edit_off_32px.png</iconset>
+                      <normaloff>:/btn/main_widget/edit.png</normaloff>
+                      <normalon>:/btn/main_widget/edit.png</normalon>:/btn/main_widget/edit.png</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -995,13 +1005,17 @@ QTextEdit {
                     </property>
                     <property name="icon">
                      <iconset resource="../resources/resources.qrc">
-                      <normaloff>:/button_images/multi_select_32px.png</normaloff>:/button_images/multi_select_32px.png</iconset>
+                      <normaloff>:/btn/main_widget/select.png</normaloff>
+                      <normalon>:/btn/main_widget/unselect.png</normalon>:/btn/main_widget/select.png</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
                       <width>24</width>
                       <height>24</height>
                      </size>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
                     </property>
                    </widget>
                   </item>
@@ -1027,7 +1041,7 @@ QTextEdit {
                     </property>
                     <property name="icon">
                      <iconset resource="../resources/resources.qrc">
-                      <normaloff>:/button_images/add_32px.png</normaloff>:/button_images/add_32px.png</iconset>
+                      <normaloff>:/btn/main_widget/increase.png</normaloff>:/btn/main_widget/increase.png</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -1059,7 +1073,7 @@ QTextEdit {
                     </property>
                     <property name="icon">
                      <iconset resource="../resources/resources.qrc">
-                      <normaloff>:/button_images/delete_32px.png</normaloff>:/button_images/delete_32px.png</iconset>
+                      <normaloff>:/btn/main_widget/clear.png</normaloff>:/btn/main_widget/clear.png</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -1204,7 +1218,7 @@ QTextEdit {
             <widget class="QScrollArea" name="AboutPageScrollArea">
              <property name="minimumSize">
               <size>
-               <width>0</width>
+               <width>964</width>
                <height>400</height>
               </size>
              </property>
@@ -1217,20 +1231,8 @@ QTextEdit {
                 <x>0</x>
                 <y>0</y>
                 <width>964</width>
-                <height>579</height>
+                <height>596</height>
                </rect>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>964</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>964</width>
-                <height>16777215</height>
-               </size>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <property name="leftMargin">
@@ -1381,7 +1383,7 @@ QTextEdit {
                    </size>
                   </property>
                   <property name="text">
-                   <string>图片</string>
+                   <string/>
                   </property>
                  </widget>
                  <widget class="QLabel" name="DeveloperName">

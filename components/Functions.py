@@ -24,6 +24,8 @@ class UtilityFunctions:
 
     @staticmethod
     def mouseMoveEvent(obj, event):
+        if not hasattr(obj, 'old_pos'):  # 如果 obj 没有 old_pos 属性，初始化
+            obj.old_pos = None
         if obj.old_pos is not None and event.buttons() == Qt.LeftButton:
             delta = event.globalPosition().toPoint() - obj.old_pos  # 计算位置变化
             obj.move(obj.x() + delta.x(), obj.y() + delta.y())  # 移动窗口

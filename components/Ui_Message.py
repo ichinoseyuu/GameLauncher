@@ -138,7 +138,7 @@ class Ui_Message(object):
         self.ButtonExit.setMinimumSize(QSize(24, 24))
         self.ButtonExit.setMaximumSize(QSize(24, 24))
         icon = QIcon()
-        icon.addFile(u":/button_images/close_32px.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/btn/title_bar/shutdown.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.ButtonExit.setIcon(icon)
 
         self.horizontalLayout.addWidget(self.ButtonExit)

@@ -220,7 +220,7 @@
          </property>
          <property name="icon">
           <iconset resource="../resources/resources.qrc">
-           <normaloff>:/button_images/close_32px.png</normaloff>:/button_images/close_32px.png</iconset>
+           <normaloff>:/btn/title_bar/shutdown.png</normaloff>:/btn/title_bar/shutdown.png</iconset>
          </property>
         </widget>
        </item>
@@ -314,7 +314,7 @@
        </property>
        <property name="icon">
         <iconset resource="../resources/resources.qrc">
-         <normaloff>:/button_images/file_32px.png</normaloff>:/button_images/file_32px.png</iconset>
+         <normaloff>:/btn/main_widget/file.png</normaloff>:/btn/main_widget/file.png</iconset>
        </property>
        <property name="iconSize">
         <size>

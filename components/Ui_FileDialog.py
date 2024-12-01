@@ -166,7 +166,7 @@ class Ui_Dialog(object):
         self.ButtonExit.setMinimumSize(QSize(24, 24))
         self.ButtonExit.setMaximumSize(QSize(24, 24))
         icon = QIcon()
-        icon.addFile(u":/button_images/close_32px.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/btn/title_bar/shutdown.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.ButtonExit.setIcon(icon)
 
         self.horizontalLayout.addWidget(self.ButtonExit)
@@ -194,7 +194,7 @@ class Ui_Dialog(object):
         self.ButtonChooseFolder.setMinimumSize(QSize(32, 32))
         self.ButtonChooseFolder.setMaximumSize(QSize(32, 32))
         icon1 = QIcon()
-        icon1.addFile(u":/button_images/file_32px.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon1.addFile(u":/btn/main_widget/file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.ButtonChooseFolder.setIcon(icon1)
         self.ButtonChooseFolder.setIconSize(QSize(24, 24))
 

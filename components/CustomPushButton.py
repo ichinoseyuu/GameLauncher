@@ -1,3 +1,4 @@
+from PySide6.QtGui import QMouseEvent
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from PySide6.QtGui import *
@@ -18,6 +19,7 @@ class CustomButton(QPushButton):
         self.setIconSize(QSize(24, 24))
         self.setLayoutDirection(Qt.LeftToRight)
         self.setStyleSheet(StyleManager.btnStyle)
+        
         if not self.parent.isEditMode:
             self.setCheckable(False)
         else:
@@ -26,12 +28,43 @@ class CustomButton(QPushButton):
 
     def mousePressEvent(self, event):
         # 重写鼠标按下事件
-        if not self.isCheckable():
-            self.showInExplorer(self.path)
-        else:
+        print(self.isCheckable())
+        if self.isCheckable():
             self.changeStyle()
-        print(f'checkable:{self.isCheckable()}')
-        super().mousePressEvent(event)  # 保持原有功能
+        if event.button() == Qt.LeftButton:
+            print("left button clicked")
+
+        elif event.button() == Qt.RightButton:
+            print("Right button clicked")
+        super().mousePressEvent(event)
+            
+            
+    def enterEvent(self, event):
+        # 鼠标进入按钮时显示自定义信息
+        QToolTip.showText(event.globalPos(), self.path, self)
+        # 让父类方法继续处理事件
+        #self.setStyleSheet(StyleManager.btnStyle)
+        super().enterEvent(event)
+        pass
+
+    def leaveEvent(self, event):
+        # 鼠标离开按钮时隐藏标签
+        QToolTip.hideText()
+        #self.setStyleSheet(StyleManager.btnStyle)
+        super().leaveEvent(event)
+        pass
+    
+    def mouseMoveEvent(self, event):
+        # 鼠标在按钮上移动时，标签随着鼠标移动
+        #QToolTip.showText(event.globalPos(), self.path, self)
+        super().mouseMoveEvent(event)
+        pass
+    
+    def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
+        self.showInExplorer(self.path)
+        return super().mouseDoubleClickEvent(event)
+
+
         
     def showInExplorer(self, folderPath: str):
         # region 在资源管理器中显示
@@ -46,28 +79,9 @@ class CustomButton(QPushButton):
         if self.isChecked():
             # 如果按钮已经被选中，更新显示
             self.setStyleSheet(StyleManager.btnStyle)
-            print(f'selcet{self.text()}')
+            print(f'selcet:{self.text()}')
         else:
             # 如果按钮没有被选中，更新显示
             self.setStyleSheet(StyleManager.btnStyle)
-            print(f'unselcet{self.text()}')
+            print(f'unselcet:{self.text()}')
         # endregion
-        
-    def enterEvent(self, event):
-        # 重写鼠标进入事件
-        self.setStyleSheet(StyleManager.btnStyle)
-        super().enterEvent(event)
-
-    def leaveEvent(self, event):
-        # 重写鼠标离开事件
-        self.setStyleSheet(StyleManager.btnStyle)
-        super().leaveEvent(event)
-
-if __name__ == '__main__':
-    app = QApplication([])
-
-    # 创建自定义按钮
-    button = CustomButton("Click Me", "icon.png")
-    button.show()
-
-    app.exec_()

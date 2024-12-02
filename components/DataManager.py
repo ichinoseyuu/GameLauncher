@@ -63,6 +63,7 @@ class ButtonManager:
         if not btns: return
         for btn in btns:
             btn.setCheckable(not btn.isCheckable())
+        print('toggleCheckable:done')
         #endregion
 
     def toggleChecked(self, btns: dict):

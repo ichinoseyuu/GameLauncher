@@ -109,13 +109,7 @@ class MainWindow(QMainWindow):
             self.btnData.toggleCheckable(btns)
             print('退出编辑模式')
         self.btnData.printBtns()
-        # endregion    
-        
-    def folderBtnFun(self, btn , path: str):
-        if self.isEditMode:
-            self.changeButtonStyle(btn)
-        else:
-            self.showInExplorer(path)
+        # endregion           
     
 
     def removeSelectedButtons(self):

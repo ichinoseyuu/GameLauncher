@@ -1,0 +1,25 @@
+QPushButton {
+    background-color: rgb(235, 235, 235);
+    font-family: "微软雅黑";
+    font-size: 10pt;
+    color: dimgray;
+    border-radius: 2px;
+}
+QPushButton:checked {
+    background-color: rgb(235, 235, 235);
+    font-family: "微软雅黑";
+    font-size: 10pt;
+    color: dimgray;
+    border-radius: 2px;
+    border: 2px solid dimgray;
+}
+QPushButton:hover {
+    background-color: gainsboro;
+    border-radius: 2px;
+}
+QPushButton:pressed {
+    background-color: lightgray;
+    border-radius: 2px;
+}
+
+

@@ -88,7 +88,7 @@
     border-radius: 2px;
 }
 
-#FolderPathLineEdit {
+#PathLineEdit {
 	font-family: &quot;微软雅黑&quot;;
     font: 10pt;
     border: 1px solid gainsboro;
@@ -97,7 +97,7 @@
     color: dimgray;
 }
 
-#FolderNameLineEdit {
+#NameLineEdit {
 	font-family: &quot;微软雅黑&quot;;
     font: 10pt;
     border: 1px solid gainsboro;
@@ -232,7 +232,7 @@
       <property name="layoutDirection">
        <enum>Qt::LayoutDirection::RightToLeft</enum>
       </property>
-      <widget class="QLineEdit" name="FolderNameLineEdit">
+      <widget class="QLineEdit" name="NameLineEdit">
        <property name="geometry">
         <rect>
          <x>9</x>
@@ -257,7 +257,7 @@
         <string>请输入名称</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="FolderPathLineEdit">
+      <widget class="QLineEdit" name="PathLineEdit">
        <property name="geometry">
         <rect>
          <x>9</x>

@@ -1,14 +1,19 @@
 import sys
 import os
+import enum
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from components import *
 
+
 widgets = None
 class MainWindow(QMainWindow):
+
     def __init__(self):
         QMainWindow.__init__(self)
+        self.styleData = StyleManager()
+        self.btnData = ButtonManager()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)  # 生成界面
         global widgets 
@@ -17,16 +22,22 @@ class MainWindow(QMainWindow):
         self.setWindowFlags(Qt.FramelessWindowHint) # 表示窗口没有边框
         self.setAttribute(Qt.WA_TranslucentBackground) # 表示窗口具有透明效果
         widgets.FolderGridLayout.setAlignment(Qt.AlignTop | Qt.AlignLeft) # 设置布局对齐方式
+        widgets.FolderGridLayout.setColumnMinimumWidth(0, 184)
+        widgets.FolderGridLayout.setColumnMinimumWidth(1, 184)
+        widgets.FolderGridLayout.setColumnMinimumWidth(2, 184)
+        widgets.FolderGridLayout.setColumnMinimumWidth(3, 184)
+        widgets.FolderGridLayout.setColumnMinimumWidth(4, 184)
+        widgets.FolderGridLayout.setRowMinimumHeight(0, 50)
+        widgets.FolderGridLayout.setRowMinimumHeight(1, 50)
+        widgets.FolderGridLayout.setRowMinimumHeight(2, 50)
+        widgets.FolderGridLayout.setRowMinimumHeight(3, 50)
+        widgets.FolderGridLayout.setRowMinimumHeight(4, 50)
 
-        
-        self.isDeleteMode = False # 当前是否在删除模式
-        self.isMultiSelectMode = False # 当前是否在多选模式
-        self.selectedButton = None # 当前选中的按钮
+
+        self.isEditMode = False # 当前是否在删除模式
         self.colLimit = 5 # 每行最多放5个按钮
-        self.index = 0 # 按钮索引
         self.isChooseGameFile = False # 是否已经选择游戏文件
         widgets.StackedWidget.setCurrentIndex(0) # 默认显示主页
-
 
 
         #标题栏按钮
@@ -43,7 +54,7 @@ class MainWindow(QMainWindow):
 
         #开始页按钮
         widgets.ButtonAddFolder.clicked.connect(self.openFolderDialog)
-        widgets.ButtonDelFolder.clicked.connect(self.removeSelectedButton)
+        widgets.ButtonDelFolder.clicked.connect(self.removeSelectedButtons)
         widgets.ButtonEditFolder.clicked.connect(self.toggleMode)
         #self.ButtonSelectMore.clicked.connect(self.selectMore)
 
@@ -56,143 +67,143 @@ class MainWindow(QMainWindow):
 
 
     def chooseGameFile(self):
-        chooseFileDialog = FileDialog('游戏',self)
-        reply, str = chooseFileDialog.exec()
+        # region 选择游戏文件
+        fileDialog = FileDialog('游戏',FileDialog.DialogMode.File, self)
+        reply, name, path = fileDialog.exec()
         if reply:
             self.isChooseGameFile = True
-            widgets.CurrentGameLabel.setText(f'当前游戏：{str}')
+            widgets.CurrentGameLabel.setText(f'当前游戏：{name}')
+        # endregion
 
 
     def openFolderDialog(self):
-        chooseFileDialog = FolderDialog('文件夹',self)                        
-        reply, name, path = chooseFileDialog.exec()
+        # region 打开文件夹选择对话框
+        folderDialog = FileDialog('文件夹',FileDialog.DialogMode.Folder, self)                        
+        reply, name, path = folderDialog.exec()
         if reply:
-            self.addFolder(name, path)   
- 
-    def addFolder(self, name, path):
+            #self.addFolder(name, path)
+            self.testadd()
+        # endregion
+
+    
+    def addFolder(self, name: str, path: str):
+        # region 添加按钮
         # 计算新按钮应该放置的位置
         row = self.ui.FolderGridLayout.count() // self.colLimit 
         col = self.ui.FolderGridLayout.count() % self.colLimit   
         # 创建新按钮
         newBtn = QPushButton(f"{name}")
-        newBtn.setStyleSheet(
-                'QPushButton {'
-                '   background-color: rgb(235, 235, 235);'
-	            '   font-family: "微软雅黑";'
-	            '   font-size: 10pt;'
-	            '   color: dimgray;'
-                '   border-radius: 2px;'
-                '}'
-                'QPushButton:hover {'
-                '   background-color: gainsboro;'
-                '   border-radius: 2px;'
-                '}'
-                'QPushButton:pressed {'
-                '   background-color: lightgray;'
-                '   border-radius: 2px;'
-                '}'
-            )
+        item ={(row, col):{'name':name, 'obj':newBtn, 'path':path}}
+        self.btnData.buttons.update(item)
+        # self.btnData.buttons[(row, col)] = {'name':name, 'obj':newBtn, 'path':path}
         newBtn.setMinimumSize(184, 50)
         newBtn.setMaximumSize(184, 50)
-        newBtn.clicked.connect(lambda: self.showInExplorer(path))
-        #newButton.clicked.connect(lambda _, btn=newButton: self.changeButtonState(btn))
-        newBtn.clicked.connect(lambda: self.changeButtonState(newBtn))
-        # 将新按钮添加到网格布局
-        self.ui.FolderGridLayout.addWidget(newBtn, row, col)
-    
-    def showInExplorer(self, path):
-        if self.isDeleteMode: return
-        filePath = os.path.normpath(path)
-        if os.path.exists(filePath):
-            QProcess.startDetached("explorer", [filePath])
-
-    def toggleMode(self):
-        self.isDeleteMode = not self.isDeleteMode
-        if self.isDeleteMode:
-            print("已进入删除模式")
+        if self.isEditMode:
+            newBtn.setCheckable(True)
         else:
-            
-            print("已退出删除模式")
+            newBtn.setCheckable(False)
+        newBtn.setStyleSheet(self.styleData.btnStyle)
+        newBtn.clicked.connect(lambda _, btn=newBtn: self.folderBtnFun(btn, path))
+        # 将新按钮添加到网格布局
+        widgets.FolderGridLayout.addWidget(newBtn, row, col)
+        # endregion
+        
+    def toggleMode(self):
+        # region 切换模式
+        self.isEditMode = not self.isEditMode
+        btns = self.btnData.getAllBtns()
+        if self.isEditMode:
+            # 将所有存在的按钮改为checkable状态
+            self.btnData.toggleCheckable(btns)
+            self.btnData.printBtns()
+            print('进入删除模式')
+        else:
+            self.btnData.toggleCheckable(btns)
+            print('退出删除模式')
+        # endregion    
+        
+    def folderBtnFun(self, btn: QPushButton, path: str):
+        if self.isEditMode:
+            self.changeButtonStyle(btn)
+        else:
+            self.showInExplorer(path)
+    
+    def showInExplorer(self, folderPath: str):
+        # region 在资源管理器中显示
+        Path = os.path.normpath(folderPath) #标准化路径格式
+        if os.path.exists(Path):
+            QProcess.startDetached("explorer", [Path])
+        # endregion
 
+    def changeButtonStyle(self, btn: QPushButton): 
+        # region 切换按钮显示状态
+        # 按钮被点击则会自动切换状态
+        if btn.isChecked():
+            # 如果按钮已经被选中，更新显示
+            btn.setStyleSheet(self.styleData.btnStyle)
+            print(f'选中{btn.text()}')
+        else:
+            # 如果按钮没有被选中，更新显示
+            btn.setStyleSheet(self.styleData.btnStyle)
+            print(f'取消选中{btn.text()}')
+        # endregion
 
-    def changeButtonState(self, button):
-        if self.isDeleteMode:
-            # 如果已经选中了一个按钮，移除其边框
-            if self.selectedButton:
-                self.selectedButton.setStyleSheet(
-                'QPushButton {'
-                '   background-color: rgb(235, 235, 235);'
-	            '   font-family: "微软雅黑";'
-	            '   font-size: 10pt;'
-	            '   color: dimgray;'
-                '   border-radius: 2px;'
-                '}'
-                'QPushButton:hover {'
-                '   background-color: gainsboro;'
-                '   border-radius: 2px;'
-                '}'
-                'QPushButton:pressed {'
-                '   background-color: lightgray;'
-                '   border-radius: 2px;'
-                '}'
-            )
-
-            # 设置新的选中按钮的边框
-            self.selectedButton = button
-            self.selectedButton.setStyleSheet(
-                'QPushButton {'
-                '   background-color: rgb(235, 235, 235);'
-	            '   font-family: "微软雅黑";'
-	            '   font-size: 10pt;'
-	            '   color: dimgray;'
-                '   border-radius: 2px;'
-                '   border: 1px solid dimgray;'
-                '}'
-                'QPushButton:hover {'
-                '   background-color: gainsboro;'
-                '   border-radius: 2px;'
-                '}'
-                'QPushButton:pressed {'
-                '   background-color: lightgray;'
-                '   border-radius: 2px;'
-                '}'
-            )
-            print(f"已选中按钮 {self.selectedButton.text()}")
-
-        # 从指定位置开始，将后面的按钮重新排列
-    def rearrangeButtons(self, row: int, col: int):
+    def removeSelectedButtons(self):
+        btns = self.btnData.getSelectedBtns()
+        self.btnData.delSelectedBtns(btns,self)
+        widgets.FolderGridLayout.update()
+        # region old_删除选中的按钮
+        # coods , btns = self.btnData.getSelectedBtns()
+        # if not btns: return
+        # self.btnData.delSelectedBtns(btns, self.colLimit)
+        # for cood in coods:
+        #     self.rearrangeButtons(cood[0], cood[1])
+        # self.btnData.printBtns()
+        # print(coods)
+        # endregion    
+        # region  old_删除选中的按钮
+        # btns = self.btnData.getSelectedBtns()
+        # if not btns: return
+        # points = []
+        # for btn in btns:
+        #     # 获取被选中按钮的位置
+        #     row, col = widgets.FolderGridLayout.getItemPosition(widgets.FolderGridLayout.indexOf(btn))[:2]
+        #     points.append((row, col))
+        #     btn.setCheckable(not btn.isCheckable())
+        # self.btnData.delSelectedBtns()
+        # self.rearrangeButtons(row, col)
+        # endregion
+    
+    def testadd(self):
+        paths = ['./test','./components', './data', './qss', './resources', './.vscode', './ui', './__pycache__']
+        names = ['test','components', 'data', 'qss', 'resources', '.vscode', 'ui', '__pycache__']
+        for i in range(len(paths)):
+            self.addFolder(names[i], paths[i])
+    
+        
+    def updateBtns(self, row: int, col: int):
+        # region 从指定位置开始将按钮重新排列
         # 传入位置为最后一列
-        if col == widgets.FolderGridLayout.columnCount() - 1:
+        if col == self.colLimit - 1:
             # 获取下下一个位置的控件
             next_item = widgets.FolderGridLayout.itemAtPosition(row + 1, 0)
             # 下一个位置为空，结束
-            if not next_item: return   
+            if not next_item: 
+                print("下一行为空")
+                return
             widgets.FolderGridLayout.addWidget(next_item.widget(), row, col)
-            return self.rearrangeButtons(row + 1, 0)
+            print(f'移动{row+1},{0}到 {row},{col}')
+            return self.updateBtns(row + 1, 0)
         # 传入位置不在最后一列
         next_item = widgets.FolderGridLayout.itemAtPosition(row, col + 1)
         # 下一个位置为空，结束
-        if not next_item: return   
+        if not next_item: 
+            print("下一列为空")
+            return   
         widgets.FolderGridLayout.addWidget(next_item.widget(), row, col)
-        return self.rearrangeButtons(row, col + 1)
-
-    def removeSelectedButton(self):
-        if self.selectedButton:
-            # 获取被选中按钮的位置
-            row, col = widgets.FolderGridLayout.getItemPosition(widgets.FolderGridLayout.indexOf(self.selectedButton))[:2]
-            # 删除选中的按钮
-            self.selectedButton.deleteLater()
-            print(f"{self.selectedButton.text()} is deleted")
-            # 重新排列其他按钮的位置
-            self.rearrangeButtons(row, col)
-            # 更新保存的按钮位置
-
-            # 清除选中的按钮
-            self.selectedButton = None  
-
-
-
-
+        print(f'移动{row},{col+1}到 {row},{col}')
+        return self.updateBtns(row, col + 1)
+        # endregion
 
 
     def mousePressEvent(self, event):
@@ -207,8 +218,9 @@ class MainWindow(QMainWindow):
     def paintEvent(self, event):
         UtilityFunctions.paintShadow(self)
 
-        #退出程序
+
     def exitApplication(self):
+        #region 退出程序
         message = Message('退出', '您确定要退出吗？', self)
         reply = message.exec()
         if reply == 1:
@@ -216,6 +228,7 @@ class MainWindow(QMainWindow):
             widgets.fadeAnim.setEndValue(0)
             widgets.fadeAnim.finished.connect(lambda:QApplication.instance().quit())
             widgets.fadeAnim.start()
+        #endregion
 
     #region 旧版退出程序
     # def closeEvent(self, event):

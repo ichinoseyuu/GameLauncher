@@ -82,7 +82,7 @@ class Ui_Dialog(object):
 "    border-radius: 2px;\n"
 "}\n"
 "\n"
-"#FolderPathLineEdit {\n"
+"#PathLineEdit {\n"
 "	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
 "    font: 10pt;\n"
 "    border: 1px solid gainsboro;\n"
@@ -91,7 +91,7 @@ class Ui_Dialog(object):
 "    color: dimgray;\n"
 "}\n"
 "\n"
-"#FolderNameLineEdit {\n"
+"#NameLineEdit {\n"
 "	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
 "    font: 10pt;\n"
 "    border: 1px solid gainsboro;\n"
@@ -115,8 +115,8 @@ class Ui_Dialog(object):
 "\n"
 "#ButtonCancel:hover {\n"
 "    background-color: gainsboro;\n"
-"   "
-                        " border-radius: 2px;\n"
+"    border-radi"
+                        "us: 2px;\n"
 "}\n"
 "\n"
 "#ButtonCancel:pressed {\n"
@@ -177,17 +177,17 @@ class Ui_Dialog(object):
         self.DialogWidget = QWidget(self.StyleSheet)
         self.DialogWidget.setObjectName(u"DialogWidget")
         self.DialogWidget.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
-        self.FolderNameLineEdit = QLineEdit(self.DialogWidget)
-        self.FolderNameLineEdit.setObjectName(u"FolderNameLineEdit")
-        self.FolderNameLineEdit.setGeometry(QRect(9, 110, 381, 32))
-        self.FolderNameLineEdit.setMinimumSize(QSize(0, 32))
-        self.FolderNameLineEdit.setMaximumSize(QSize(16777215, 32))
-        self.FolderPathLineEdit = QLineEdit(self.DialogWidget)
-        self.FolderPathLineEdit.setObjectName(u"FolderPathLineEdit")
-        self.FolderPathLineEdit.setGeometry(QRect(9, 50, 341, 32))
-        self.FolderPathLineEdit.setMinimumSize(QSize(0, 32))
-        self.FolderPathLineEdit.setMaximumSize(QSize(16777215, 32))
-        self.FolderPathLineEdit.setReadOnly(True)
+        self.NameLineEdit = QLineEdit(self.DialogWidget)
+        self.NameLineEdit.setObjectName(u"NameLineEdit")
+        self.NameLineEdit.setGeometry(QRect(9, 110, 381, 32))
+        self.NameLineEdit.setMinimumSize(QSize(0, 32))
+        self.NameLineEdit.setMaximumSize(QSize(16777215, 32))
+        self.PathLineEdit = QLineEdit(self.DialogWidget)
+        self.PathLineEdit.setObjectName(u"PathLineEdit")
+        self.PathLineEdit.setGeometry(QRect(9, 50, 341, 32))
+        self.PathLineEdit.setMinimumSize(QSize(0, 32))
+        self.PathLineEdit.setMaximumSize(QSize(16777215, 32))
+        self.PathLineEdit.setReadOnly(True)
         self.ButtonChooseFolder = QPushButton(self.DialogWidget)
         self.ButtonChooseFolder.setObjectName(u"ButtonChooseFolder")
         self.ButtonChooseFolder.setGeometry(QRect(360, 50, 32, 32))
@@ -240,8 +240,8 @@ class Ui_Dialog(object):
 #if QT_CONFIG(tooltip)
         self.ButtonExit.setToolTip(QCoreApplication.translate("Dialog", u"\u5173\u95ed", None))
 #endif // QT_CONFIG(tooltip)
-        self.FolderNameLineEdit.setPlaceholderText(QCoreApplication.translate("Dialog", u"\u8bf7\u8f93\u5165\u540d\u79f0", None))
-        self.FolderPathLineEdit.setPlaceholderText(QCoreApplication.translate("Dialog", u"\u8bf7\u9009\u62e9\u6587\u4ef6\u5939", None))
+        self.NameLineEdit.setPlaceholderText(QCoreApplication.translate("Dialog", u"\u8bf7\u8f93\u5165\u540d\u79f0", None))
+        self.PathLineEdit.setPlaceholderText(QCoreApplication.translate("Dialog", u"\u8bf7\u9009\u62e9\u6587\u4ef6\u5939", None))
 #if QT_CONFIG(tooltip)
         self.ButtonChooseFolder.setToolTip(QCoreApplication.translate("Dialog", u"\u9009\u62e9\u6587\u4ef6\u5939", None))
 #endif // QT_CONFIG(tooltip)

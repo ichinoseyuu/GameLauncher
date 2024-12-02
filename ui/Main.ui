@@ -55,6 +55,7 @@
     border-radius: 2px;
 }
 
+
 /*=============================*/
 
 #LeftWidget {
@@ -179,6 +180,11 @@
 #FunctionWidget QPushButton {
     background-color: transparent;
     border-radius: 2px;
+}
+#FunctionWidget QPushButton#ButtonEditFolder:checked {
+    background-color: rgb(230,230,230);
+	border-radius: 2px;
+	border: 1px solid dimgray;
 }
 
 #FunctionWidget QPushButton:hover {
@@ -947,42 +953,6 @@ QTextEdit {
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="4">
-                   <widget class="QPushButton" name="ButtonEditFolder">
-                    <property name="minimumSize">
-                     <size>
-                      <width>32</width>
-                      <height>32</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>32</width>
-                      <height>32</height>
-                     </size>
-                    </property>
-                    <property name="toolTip">
-                     <string>进入编辑模式</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../resources/resources.qrc">
-                      <normaloff>:/btn/main_widget/edit.png</normaloff>
-                      <normalon>:/btn/main_widget/edit.png</normalon>:/btn/main_widget/edit.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>24</width>
-                      <height>24</height>
-                     </size>
-                    </property>
-                    <property name="checkable">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="0" column="2">
                    <widget class="QPushButton" name="ButtonSelectMore">
                     <property name="minimumSize">
@@ -1051,6 +1021,42 @@ QTextEdit {
                     </property>
                    </widget>
                   </item>
+                  <item row="0" column="4">
+                   <widget class="QPushButton" name="ButtonEditFolder">
+                    <property name="minimumSize">
+                     <size>
+                      <width>32</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>32</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>进入编辑模式</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../resources/resources.qrc">
+                      <normaloff>:/btn/main_widget/edit.png</normaloff>
+                      <normalon>:/btn/main_widget/edit.png</normalon>:/btn/main_widget/edit.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>24</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="0" column="1">
                    <widget class="QPushButton" name="ButtonDelFolder">
                     <property name="minimumSize">
@@ -1091,7 +1097,7 @@ QTextEdit {
                  <property name="minimumSize">
                   <size>
                    <width>944</width>
-                   <height>550</height>
+                   <height>500</height>
                   </size>
                  </property>
                  <property name="maximumSize">
@@ -1231,7 +1237,7 @@ QTextEdit {
                 <x>0</x>
                 <y>0</y>
                 <width>964</width>
-                <height>596</height>
+                <height>400</height>
                </rect>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_7">

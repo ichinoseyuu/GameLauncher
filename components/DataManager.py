@@ -1,8 +1,8 @@
 import enum
-from typing import Callable
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from PySide6.QtGui import *
+from components import *
 
 class ButtonManager:
     class Keys(enum.StrEnum):
@@ -47,7 +47,6 @@ class ButtonManager:
                 if key in value and value[key] == btn:
                     value[key].deleteLater()# 删除按钮的GUI对象
                     obj.updateBtns(cood[0], cood[1])  # 更新按钮布局
-                    obj.ui.FolderGridLayout.update()
                     del self.buttons[cood]    # 删除字典中的该键值对       
         newButtons = {}
         # 遍历字典的剩余元素，重新编号键
@@ -78,11 +77,10 @@ class ButtonManager:
         
 
 class StyleManager:
-    def __init__(self):
-        self.btnStyle = self.loadStyleData('./qss/other/button.qss')
+    btnStyle = UtilityFunctions.loadFile('./qss/other/button.qss')
+    
 
-    def loadStyleData(self, filePath: str):
-        with open(filePath, 'r', encoding='utf-8') as file:
-            return file.read()
+    
+    
         
     

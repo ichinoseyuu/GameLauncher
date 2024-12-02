@@ -10,9 +10,10 @@ class Func_Main():
 
 class UtilityFunctions:
     
-    def getObjsFromKey(datas: dict, key: str):
-        return [data[key] for data in datas]
-
+    def loadFile(filePath: str):
+        with open(filePath, 'r', encoding='utf-8') as file:
+            return file.read()
+    
 
     def calculatedGeometricPos(geometry,parentGeometry) :
         #region 计算窗口位置

@@ -12,7 +12,6 @@ class MainWindow(QMainWindow):
 
     def __init__(self):
         QMainWindow.__init__(self)
-        self.styleData = StyleManager()
         self.btnData = ButtonManager()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)  # 生成界面
@@ -92,19 +91,9 @@ class MainWindow(QMainWindow):
         row = self.ui.FolderGridLayout.count() // self.colLimit 
         col = self.ui.FolderGridLayout.count() % self.colLimit   
         # 创建新按钮
-        newBtn = QPushButton(f"{name}")
+        newBtn = CustomButton(name, path, self)
         item ={(row, col):{'name':name, 'obj':newBtn, 'path':path}}
         self.btnData.buttons.update(item)
-        # self.btnData.buttons[(row, col)] = {'name':name, 'obj':newBtn, 'path':path}
-        newBtn.setMinimumSize(184, 50)
-        newBtn.setMaximumSize(184, 50)
-        if self.isEditMode:
-            newBtn.setCheckable(True)
-        else:
-            newBtn.setCheckable(False)
-        newBtn.setStyleSheet(self.styleData.btnStyle)
-        newBtn.clicked.connect(lambda _, btn=newBtn: self.folderBtnFun(btn, path))
-        # 将新按钮添加到网格布局
         widgets.FolderGridLayout.addWidget(newBtn, row, col)
         # endregion
         
@@ -115,43 +104,23 @@ class MainWindow(QMainWindow):
         if self.isEditMode:
             # 将所有存在的按钮改为checkable状态
             self.btnData.toggleCheckable(btns)
-            self.btnData.printBtns()
-            print('进入删除模式')
+            print('进入编辑模式')
         else:
             self.btnData.toggleCheckable(btns)
-            print('退出删除模式')
+            print('退出编辑模式')
+        self.btnData.printBtns()
         # endregion    
         
-    def folderBtnFun(self, btn: QPushButton, path: str):
+    def folderBtnFun(self, btn , path: str):
         if self.isEditMode:
             self.changeButtonStyle(btn)
         else:
             self.showInExplorer(path)
     
-    def showInExplorer(self, folderPath: str):
-        # region 在资源管理器中显示
-        Path = os.path.normpath(folderPath) #标准化路径格式
-        if os.path.exists(Path):
-            QProcess.startDetached("explorer", [Path])
-        # endregion
-
-    def changeButtonStyle(self, btn: QPushButton): 
-        # region 切换按钮显示状态
-        # 按钮被点击则会自动切换状态
-        if btn.isChecked():
-            # 如果按钮已经被选中，更新显示
-            btn.setStyleSheet(self.styleData.btnStyle)
-            print(f'选中{btn.text()}')
-        else:
-            # 如果按钮没有被选中，更新显示
-            btn.setStyleSheet(self.styleData.btnStyle)
-            print(f'取消选中{btn.text()}')
-        # endregion
 
     def removeSelectedButtons(self):
         btns = self.btnData.getSelectedBtns()
         self.btnData.delSelectedBtns(btns,self)
-        widgets.FolderGridLayout.update()
         # region old_删除选中的按钮
         # coods , btns = self.btnData.getSelectedBtns()
         # if not btns: return
@@ -180,29 +149,40 @@ class MainWindow(QMainWindow):
         for i in range(len(paths)):
             self.addFolder(names[i], paths[i])
     
-        
+
     def updateBtns(self, row: int, col: int):
         # region 从指定位置开始将按钮重新排列
-        # 传入位置为最后一列
         if col == self.colLimit - 1:
             # 获取下下一个位置的控件
             next_item = widgets.FolderGridLayout.itemAtPosition(row + 1, 0)
-            # 下一个位置为空，结束
-            if not next_item: 
-                print("下一行为空")
+            if next_item is None:
+                
                 return
             widgets.FolderGridLayout.addWidget(next_item.widget(), row, col)
-            print(f'移动{row+1},{0}到 {row},{col}')
             return self.updateBtns(row + 1, 0)
         # 传入位置不在最后一列
         next_item = widgets.FolderGridLayout.itemAtPosition(row, col + 1)
-        # 下一个位置为空，结束
-        if not next_item: 
-            print("下一列为空")
-            return   
+        if next_item is None:
+            
+            return
         widgets.FolderGridLayout.addWidget(next_item.widget(), row, col)
-        print(f'移动{row},{col+1}到 {row},{col}')
         return self.updateBtns(row, col + 1)
+        # endregion
+        
+    def getFirstEmptyRowAndCol(self):
+        # region 获取第一个空位
+        for i in range(widgets.FolderGridLayout.count()):
+            item = widgets.FolderGridLayout.itemAt(i)
+        if item is None:
+            return i // self.colLimit, i % self.colLimit
+        # endregion
+        
+    def getFirstEmptyIndex(self):
+        # region 获取第一个空位
+        for i in range(widgets.FolderGridLayout.count()):
+            item = widgets.FolderGridLayout.itemAt(i)
+        if item is None:
+            return i
         # endregion
 
 

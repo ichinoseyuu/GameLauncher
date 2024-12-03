@@ -5,7 +5,7 @@ from PySide6.QtGui import *
 from components import *
 import os
 
-class CustomButton(QPushButton):
+class CButton(QPushButton):
     def __init__(self, text: str, path: str, parent=None):
         QPushButton.__init__(self)
         self.parent = parent

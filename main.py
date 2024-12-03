@@ -67,7 +67,7 @@ class MainWindow(QMainWindow):
 
     def chooseGameFile(self):
         # region 选择游戏文件
-        fileDialog = FileDialog('游戏',FileDialog.DialogMode.File, self)
+        fileDialog = CFileDialog('游戏',CFileDialog.DialogMode.File, self)
         reply, name, path = fileDialog.exec()
         if reply:
             self.isChooseGameFile = True
@@ -77,7 +77,7 @@ class MainWindow(QMainWindow):
 
     def openFolderDialog(self):
         # region 打开文件夹选择对话框
-        folderDialog = FileDialog('文件夹',FileDialog.DialogMode.Folder, self)                        
+        folderDialog = CFileDialog('文件夹',CFileDialog.DialogMode.Folder, self)                        
         reply, name, path = folderDialog.exec()
         if reply:
             #self.addFolder(name, path)
@@ -91,7 +91,7 @@ class MainWindow(QMainWindow):
         row = self.ui.FolderGridLayout.count() // self.colLimit 
         col = self.ui.FolderGridLayout.count() % self.colLimit   
         # 创建新按钮
-        newBtn = CustomButton(name, path, self)
+        newBtn = CButton(name, path, self)
         item ={(row, col):{'name':name, 'obj':newBtn, 'path':path}}
         self.btnData.buttons.update(item)
         widgets.FolderGridLayout.addWidget(newBtn, row, col)
@@ -195,7 +195,7 @@ class MainWindow(QMainWindow):
 
     def exitApplication(self):
         #region 退出程序
-        message = Message('退出', '您确定要退出吗？', self)
+        message = CMessage('退出', '您确定要退出吗？', self)
         reply = message.exec()
         if reply == 1:
             widgets.fadeAnim.setStartValue(1)

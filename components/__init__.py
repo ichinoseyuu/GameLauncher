@@ -2,10 +2,12 @@ from .Ui_Main import Ui_MainWindow
 from .Ui_Message import Ui_Message
 from .Ui_FileDialog import Ui_Dialog
 
-from .CustomWidgets import Message, FileDialog
-from .Functions import Func_Main, UtilityFunctions
+from .Dialog import CFileDialog
+from .Message import CMessage
+from .Functions import UtilityFunctions
 from .DataManager import StyleManager,ButtonManager
-from .CustomPushButton import CustomButton
+from .PushButton import CButton
+from .ToolTip import CToolTip
 
 
 

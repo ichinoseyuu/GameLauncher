@@ -9,28 +9,18 @@ from components import *
 
 widgets = None
 class MainWindow(QMainWindow):
-
+    #region 初始化
     def __init__(self):
         QMainWindow.__init__(self)
         self.btnData = ButtonManager()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)  # 生成界面
-        global widgets 
+        global widgets
         widgets = self.ui
-        
+
         self.setWindowFlags(Qt.FramelessWindowHint) # 表示窗口没有边框
         self.setAttribute(Qt.WA_TranslucentBackground) # 表示窗口具有透明效果
         widgets.FolderGridLayout.setAlignment(Qt.AlignTop | Qt.AlignLeft) # 设置布局对齐方式
-        widgets.FolderGridLayout.setColumnMinimumWidth(0, 184)
-        widgets.FolderGridLayout.setColumnMinimumWidth(1, 184)
-        widgets.FolderGridLayout.setColumnMinimumWidth(2, 184)
-        widgets.FolderGridLayout.setColumnMinimumWidth(3, 184)
-        widgets.FolderGridLayout.setColumnMinimumWidth(4, 184)
-        widgets.FolderGridLayout.setRowMinimumHeight(0, 50)
-        widgets.FolderGridLayout.setRowMinimumHeight(1, 50)
-        widgets.FolderGridLayout.setRowMinimumHeight(2, 50)
-        widgets.FolderGridLayout.setRowMinimumHeight(3, 50)
-        widgets.FolderGridLayout.setRowMinimumHeight(4, 50)
 
 
         self.isEditMode = False # 当前是否在删除模式
@@ -41,7 +31,7 @@ class MainWindow(QMainWindow):
 
         #标题栏按钮
         widgets.ButtonMin.clicked.connect(self.showMinimized) #最小化
-        widgets.ButtonExit.clicked.connect(self.exitApplication) # 右上角退出 
+        widgets.ButtonExit.clicked.connect(self.exitApplication) # 右上角退出
 
         #左侧菜单栏按钮
         widgets.ButtonHome.clicked.connect(lambda: widgets.StackedWidget.setCurrentIndex(0))
@@ -50,12 +40,17 @@ class MainWindow(QMainWindow):
 
         #主页按钮
         widgets.ButtonPathSet.clicked.connect(self.chooseGameFile)
+        widgets.ButtonNext.clicked.connect(self.nextPage)
+        widgets.ButtonChangeGame.clicked.connect(self.swithGame)
+        #主页下拉菜单
+        widgets.GameComboBox.currentIndexChanged.connect(self.swithGame)
 
         #开始页按钮
         widgets.ButtonAddFolder.clicked.connect(self.openFolderDialog)
         widgets.ButtonDelFolder.clicked.connect(self.removeSelectedButtons)
         widgets.ButtonEditFolder.clicked.connect(self.toggleMode)
-        #self.ButtonSelectMore.clicked.connect(self.selectMore)
+        widgets.ButtonSelectAll.clicked.connect(self.selectAllBtns)
+        widgets.ButtonSelectAll.setVisible(False)
 
         # 添加淡入效果 (通过调整窗口的透明度)
         widgets.fadeAnim = QPropertyAnimation(self, b"windowOpacity")
@@ -63,134 +58,259 @@ class MainWindow(QMainWindow):
         widgets.fadeAnim.setStartValue(0)
         widgets.fadeAnim.setEndValue(1)
         widgets.fadeAnim.start()
+        #endregion
 
 
+# region homePage相关函数
+
+    # 打开游戏选择对话框
     def chooseGameFile(self):
-        # region 选择游戏文件
         fileDialog = CFileDialog('游戏',CFileDialog.DialogMode.File, self)
         reply, name, path = fileDialog.exec()
         if reply:
             self.isChooseGameFile = True
-            widgets.CurrentGameLabel.setText(f'当前游戏：{name}')
-        # endregion
+            widgets.GameComboBox.addItem(f'{name}')
+
+    # 下一页
+    def nextPage(self):
+        if self.isChooseGameFile:
+            widgets.StackedWidget.setCurrentIndex(1)
+        else:
+            print('please choose game file first')
 
 
+    # 切换游戏
+    def swithGame(self):
+        if widgets.GameComboBox.currentIndex() == 0:
+            self.isChooseGameFile = False
+        else:
+            self.isChooseGameFile = True
+        pass
+
+# endregion
+
+
+
+#region startPage相关函数
+
+    # 打开文件夹选择对话框
     def openFolderDialog(self):
-        # region 打开文件夹选择对话框
-        folderDialog = CFileDialog('文件夹',CFileDialog.DialogMode.Folder, self)                        
+        folderDialog = CFileDialog('文件夹',CFileDialog.DialogMode.Folder, self)
         reply, name, path = folderDialog.exec()
         if reply:
-            #self.addFolder(name, path)
-            self.testadd()
-        # endregion
+            self.addFolderBtn(name, path)
 
-    
-    def addFolder(self, name: str, path: str):
-        # region 添加按钮
+
+    # 添加按钮
+    def addFolderBtn(self, name: str, path: str):
         # 计算新按钮应该放置的位置
-        row = self.ui.FolderGridLayout.count() // self.colLimit 
-        col = self.ui.FolderGridLayout.count() % self.colLimit   
-        # 创建新按钮
+        row = self.ui.FolderGridLayout.count() // self.colLimit
+        col = self.ui.FolderGridLayout.count() % self.colLimit
         newBtn = CButton(name, path, self)
         item ={(row, col):{'name':name, 'obj':newBtn, 'path':path}}
         self.btnData.buttons.update(item)
         widgets.FolderGridLayout.addWidget(newBtn, row, col)
-        # endregion
-        
+
+
+    # 切换模式
     def toggleMode(self):
-        # region 切换模式
         self.isEditMode = not self.isEditMode
         btns = self.btnData.getAllBtns()
         if self.isEditMode:
             # 将所有存在的按钮改为checkable状态
+            widgets.ButtonSelectAll.setVisible(True)
             self.btnData.toggleCheckable(btns)
-            print('进入编辑模式')
+            print('is edit mode')
         else:
+            widgets.ButtonSelectAll.setVisible(False)
             self.btnData.toggleCheckable(btns)
-            print('退出编辑模式')
-        self.btnData.printBtns()
-        # endregion           
-    
+            print('not edit mode')
 
+
+    # 全选按钮
+    def selectAllBtns(self):
+        if not self.isEditMode: return
+        btns = self.btnData.getAllBtns()
+        if widgets.ButtonSelectAll.isChecked():
+            self.btnData.setCheckedAll(btns, False)
+        else:
+            self.btnData.setCheckedAll(btns, True)
+
+
+    # 删除选中的按钮
     def removeSelectedButtons(self):
-        btns = self.btnData.getSelectedBtns()
-        self.btnData.delSelectedBtns(btns,self)
-        # region old_删除选中的按钮
-        # coods , btns = self.btnData.getSelectedBtns()
-        # if not btns: return
-        # self.btnData.delSelectedBtns(btns, self.colLimit)
-        # for cood in coods:
-        #     self.rearrangeButtons(cood[0], cood[1])
-        # self.btnData.printBtns()
-        # print(coods)
-        # endregion    
-        # region  old_删除选中的按钮
-        # btns = self.btnData.getSelectedBtns()
-        # if not btns: return
-        # points = []
-        # for btn in btns:
-        #     # 获取被选中按钮的位置
-        #     row, col = widgets.FolderGridLayout.getItemPosition(widgets.FolderGridLayout.indexOf(btn))[:2]
-        #     points.append((row, col))
-        #     btn.setCheckable(not btn.isCheckable())
-        # self.btnData.delSelectedBtns()
-        # self.rearrangeButtons(row, col)
-        # endregion
-    
-    def testadd(self):
-        paths = ['./test','./components', './data', './qss', './resources', './.vscode', './ui', './__pycache__']
-        names = ['test','components', 'data', 'qss', 'resources', '.vscode', 'ui', '__pycache__']
-        for i in range(len(paths)):
-            self.addFolder(names[i], paths[i])
-    
+        if self.isEditMode:
+            coods,btns = self.btnData.getSelectedCoodAndBtn()
+            self.btnData.delSelectedBtns(btns,self.colLimit)
+            self.updateBtns(coods)
 
-    def updateBtns(self, row: int, col: int):
-        # region 从指定位置开始将按钮重新排列
+
+    # 更新按钮(删除多个)
+    def updateBtns(self, coods: list):
+        while coods:
+            self.updateBtnForDelOne(coods[0][0], coods[0][1])
+            coods = self.updateCoods(coods)
+        # region
+        # self.updateBtnForDelOne(coods[0][0], coods[0][1])
+        # coods = self.updateCoods(coods)
+        # if len(coods) != 0:
+        #     return self.updateBtns(coods)
+        # endregion
+
+
+    # 更新需要删除的坐标
+    def updateCoods(self, coods: list):
+        """_summary_ 更新需要删除的坐标
+
+        Args:
+            coods (list): _description_ 需要删除的坐标
+
+        Returns:
+            _type_: _description_ 返回新的需要删除的坐标
+        """        
+        for i in range(len(coods)):
+            cood = coods[i]
+            # 如果需要删除的坐标为 (Row, 0)，则将位置更新到上一行
+            if cood[1] == 0: coods[i] = (cood[0] - 1, self.colLimit - 1)
+            # 如果需要删除的坐标为 (Row, Col)，则将位置更新到上一列
+            else: coods[i] = (cood[0], cood[1] - 1)
+        coods.pop(0)
+        return coods
+
+
+    #从指定位置更新按钮，不考虑下一个位置的布局中是否有控件
+    def updateBtnForDelOne(self, row: int, col: int):
+        """_summary_ 根据删除一个按钮更新按钮
+
+        Args:
+            row (int): _description_ 当前按钮的行
+            col (int): _description_ 当前按钮的列
+
+        Returns:
+            _type_: _description_ 递归|是否完成更新
+        """        
+        # 如果传入的位置在最后一列
         if col == self.colLimit - 1:
-            # 获取下下一个位置的控件
-            next_item = widgets.FolderGridLayout.itemAtPosition(row + 1, 0)
-            if next_item is None:
-                
-                return
-            widgets.FolderGridLayout.addWidget(next_item.widget(), row, col)
-            return self.updateBtns(row + 1, 0)
+            if not self.moveBtnToPreviousRow(row, col):
+                return self.updateBtnForDelOne(row + 1, 0)
         # 传入位置不在最后一列
-        next_item = widgets.FolderGridLayout.itemAtPosition(row, col + 1)
-        if next_item is None:
-            
-            return
-        widgets.FolderGridLayout.addWidget(next_item.widget(), row, col)
-        return self.updateBtns(row, col + 1)
-        # endregion
-        
-    def getFirstEmptyRowAndCol(self):
-        # region 获取第一个空位
-        for i in range(widgets.FolderGridLayout.count()):
-            item = widgets.FolderGridLayout.itemAt(i)
-        if item is None:
-            return i // self.colLimit, i % self.colLimit
-        # endregion
-        
-    def getFirstEmptyIndex(self):
-        # region 获取第一个空位
-        for i in range(widgets.FolderGridLayout.count()):
-            item = widgets.FolderGridLayout.itemAt(i)
-        if item is None:
-            return i
-        # endregion
+        if not self.moveBtnToPreviousCol(row, col):
+            return self.updateBtnForDelOne(row, col + 1)
 
+
+
+
+    # 根据坐标移动按钮
+    def moveBtnWithCood(self, cood: tuple[int, int], targetCood: tuple[int, int]):
+        """_summary_ 根据坐标移动按钮
+
+        Args:
+            cood (tuple[int, int]): _description_ 当前按钮的坐标
+            targetCood (tuple[int, int]): _description_ 目标按钮的坐标
+        """
+        # 获取指定位置的控件
+        item = widgets.FolderGridLayout.itemAtPosition(targetCood[0], targetCood[1])
+        if item is None:
+            return
+        # 将控件移动到第一个空位
+        widgets.FolderGridLayout.addWidget(item.widget(), cood[0], cood[1])
+
+
+    # 根据索引移动按钮
+    def moveBtnWithIndex(self, cood: tuple[int, int], targetCood: tuple[int, int]):
+        """_summary_ 根据索引移动按钮
+
+        Args:
+            cood (tuple[int, int]): _description_ 当前按钮的坐标
+            targetCood (tuple[int, int]): _description_ 目标按钮的坐标
+        """        
+        # 获取指定位置的控件
+        item = widgets.FolderGridLayout.itemAtPosition(targetCood[0], targetCood[1])
+        if item is None:
+            return
+        # 将控件移动到第一个空位
+        widgets.FolderGridLayout.addWidget(item.widget(), cood[0], cood[1])
+
+
+    # 将按钮移动到上一行
+    def moveBtnToPreviousRow(self, row: int, col: int):
+        """_summary_  将按钮移动到上一行
+
+        Args:
+            row (int): _description_ 行
+            col (int): _description_ 列
+
+        Returns:
+            _type_: _description_ 如果下一行没有布局则返回 true,已经执行完所有移动,
+            或者下一行布局中没有控件则返回 true,则执行完一个按钮被删除的更新
+        """
+        item = widgets.FolderGridLayout.itemAtPosition(row + 1, 0)
+        #如果下一行没有布局则返回 true，已经执行完所有移动
+        if item is None: return True
+        #如果下一行布局中没有控件则返回 true，则执行完一个按钮被删除的更新
+        if item.widget() is None: return True
+        widgets.FolderGridLayout.addWidget(item.widget(), row, col)
+
+
+    # 将按钮向左移动
+    def moveBtnToPreviousCol(self, row: int, col: int):
+        """_summary_ 将按钮向左移动
+
+        Args:
+            row (int): _description_ 行
+            col (int): _description_ 列
+
+        Returns:
+            _type_: _description_ 如果下一列没有布局则返回 true,已经执行完所有移动，
+            或者下一列布局中没有控件则返回 true,则执行完一个按钮被删除的更新
+        """                
+        item = widgets.FolderGridLayout.itemAtPosition(row, col + 1)
+        #如果下一列没有布局则返回 true，已经执行完所有移动
+        if item is None: return True
+        #如果下一列布局中没有控件则返回 true，则执行完一个按钮被删除的更新
+        if item.widget() is None: return True
+        widgets.FolderGridLayout.addWidget(item.widget(), row, col)
+
+
+    # 获取第一个空位的坐标
+    def getFirstEmptyRowAndCol(self):
+        """_summary_ 获取第一个空位的坐标
+
+        Returns:
+            _type_: _description_ 第一个空位的坐标
+        """        
+        for i in range(widgets.FolderGridLayout.count()):
+            item = widgets.FolderGridLayout.itemAtPosition(i // self.colLimit, i % self.colLimit)
+            if item is None: return i // self.colLimit, i % self.colLimit
+            if item.widget() is None: return i // self.colLimit, i % self.colLimit
+        return -1
+
+    # 获取第一个空位的索引
+    def getFirstEmptyIndex(self):
+        """_summary_ 获取第一个空位的索引
+
+        Returns:
+            _type_: _description_ 第一个空位的索引
+        """       
+        for i in range(widgets.FolderGridLayout.count()):
+            item = widgets.FolderGridLayout.itemAt(i)
+            if item is None: return i
+            if item.widget() is None: return i
+        return -1
+
+# endregion
 
     def mousePressEvent(self, event):
-        UtilityFunctions.mousePressEvent(self, event)
+        GenericFunc.mousePressEvent(self, event)
 
     def mouseMoveEvent(self, event):
-        UtilityFunctions.mouseMoveEvent(self, event)
+        GenericFunc.mouseMoveEvent(self, event)
 
     def mouseReleaseEvent(self, event):
-        UtilityFunctions.mouseReleaseEvent(self, event)
+        GenericFunc.mouseReleaseEvent(self, event)
 
     def paintEvent(self, event):
-        UtilityFunctions.paintShadow(self)
+        GenericFunc.paintShadow(self)
 
 
     def exitApplication(self):
@@ -204,19 +324,20 @@ class MainWindow(QMainWindow):
             widgets.fadeAnim.start()
         #endregion
 
-    #region 旧版退出程序
+    #region
+    # 旧的退出方法
     # def closeEvent(self, event):
     #     message = CustomMessage('退出', '您确定要退出吗？')
     #     reply = message.exec()
     #     if reply == 1:
     #         self.fadeAnim.start()
-    #         event.accept()       
+    #         event.accept()
     #     else:
     #         event.ignore()
     # endregion
 
 
-            
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     mainWindow = MainWindow()

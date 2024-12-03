@@ -24,7 +24,9 @@
     </size>
    </property>
    <property name="styleSheet">
-    <string notr="true">#TitleWidget {
+    <string notr="true">/*================标题栏样式================*/
+
+#TitleWidget {
     border-bottom: 1px solid rgb(235, 235, 235);
     background-color: rgb(250, 245, 245);
 }
@@ -56,7 +58,7 @@
 }
 
 
-/*=============================*/
+/*================左侧按钮样式================*/
 
 #LeftWidget {
     border-right: 1px solid rgb(235, 235, 235);
@@ -77,18 +79,18 @@
     border-radius: 2px;
 }
 
-/*=============================*/
+/*================主页样式================*/
 
 #HomePage {
     background-color: rgb(255, 246, 248);
 }
 
-#PathSetWidget{
-    background-color: rgb(250, 245, 250);
-}
-
 #HomeLabel{
 	image: url(:/images/back_ground/home_bg.png);
+}
+
+#PathSetWidget{
+    background-color: rgb(250, 245, 250);
 }
 
 #PathSetLabel{
@@ -97,6 +99,53 @@
 	font-weight: bold;
 	color: rgb(60, 60, 60);
 }
+
+#PathSetTopWidget{
+    background-color: rgb(250, 245, 250);
+	border-bottom: 1px solid rgb(235, 235, 235);
+}
+
+#CurrentGameLabel{
+	font-family: &quot;微软雅黑&quot;;
+	font-size: 10pt;
+	color: dimgray;
+    border: 1px solid gainsboro;
+	border-radius: 2px;
+}
+
+#GameComboBox {
+	font-family: &quot;微软雅黑&quot;;
+    font: 10pt;
+    color: dimgray;
+	border-radius: 2px;
+    border: 1px solid gainsboro;
+    background-color: whitesmoke;
+}
+
+#GameComboBox::drop-down {
+    width: 25px;
+    background-color: rgb(229, 222, 235);
+}
+
+#GameComboBox QAbstractItemView {
+    color: dimgray;
+    background-color: whitesmoke;
+	border-radius: 2px;
+    outline: none;
+}
+
+#GameComboBox QAbstractItemView::item:hover {
+    background-color: lightgray;
+	border-radius: 2px;
+    color: dimgray; 
+}
+
+#GameComboBox QAbstractItemView::item:selected {
+    background-color: lightgray;
+	border-radius: 2px;
+    color: dimgray;
+}
+
 #PathSetWidget QPushButton {
     background-color: rgb(235, 235, 235);
 	color: rgb(80, 80, 80);
@@ -113,20 +162,8 @@
     border-radius: 2px;
 }
 
-#PathSetTopWidget{
-    background-color: rgb(250, 245, 250);
-	border-bottom: 1px solid rgb(235, 235, 235);
-}
+/*================开始页样式================*/
 
-#CurrentGameLabel{
-	font-family: &quot;微软雅黑&quot;;
-	font-size: 10pt;
-	color: dimgray;
-    border: 1px solid gainsboro;
-	border-radius: 2px;
-}
-
-/*=============================*/
 #StartPage {
     background-color: rgb(255, 246, 248);
 }
@@ -182,9 +219,8 @@
     border-radius: 2px;
 }
 #FunctionWidget QPushButton#ButtonEditFolder:checked {
-    background-color: rgb(230,230,230);
+    background-color: rgb(220, 220, 220);
 	border-radius: 2px;
-	border: 1px solid dimgray;
 }
 
 #FunctionWidget QPushButton:hover {
@@ -223,7 +259,9 @@
     background-color: rgb(230, 80, 110);
     border-radius: 2px;
 }
-/*=============================*/
+
+/*================关于页样式================*/
+
 #AboutPage { 
     background-color: rgb(255, 246, 248);
 }
@@ -324,14 +362,15 @@
 	font-weight: bold;
 	color: rgb(80, 80, 80);
 }
-
-QTextEdit {
-	background-color: transparent;
-	color: dimgray;
-    border: none;
-}
 /*=============================*/
 
+QToolTip {
+    font: 10pt;
+    background-color: whitesmoke;
+    color: dimgray;
+    border-radius: 2px;
+    border: 1px solid lightgray;  
+}
 </string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -640,7 +679,7 @@ QTextEdit {
        <item>
         <widget class="QStackedWidget" name="StackedWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="HomePage">
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -683,7 +722,7 @@ QTextEdit {
              <widget class="QPushButton" name="ButtonPathSet">
               <property name="geometry">
                <rect>
-                <x>840</x>
+                <x>850</x>
                 <y>90</y>
                 <width>32</width>
                 <height>32</height>
@@ -830,13 +869,13 @@ QTextEdit {
                <rect>
                 <x>40</x>
                 <y>90</y>
-                <width>781</width>
+                <width>71</width>
                 <height>32</height>
                </rect>
               </property>
               <property name="minimumSize">
                <size>
-                <width>200</width>
+                <width>0</width>
                 <height>32</height>
                </size>
               </property>
@@ -848,6 +887,28 @@ QTextEdit {
               </property>
               <property name="text">
                <string>当前游戏：</string>
+              </property>
+             </widget>
+             <widget class="QComboBox" name="GameComboBox">
+              <property name="geometry">
+               <rect>
+                <x>120</x>
+                <y>90</y>
+                <width>721</width>
+                <height>32</height>
+               </rect>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>32</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>16777215</width>
+                <height>32</height>
+               </size>
               </property>
              </widget>
             </widget>
@@ -954,7 +1015,7 @@ QTextEdit {
                    </widget>
                   </item>
                   <item row="0" column="2">
-                   <widget class="QPushButton" name="ButtonSelectMore">
+                   <widget class="QPushButton" name="ButtonSelectAll">
                     <property name="minimumSize">
                      <size>
                       <width>32</width>
@@ -968,7 +1029,7 @@ QTextEdit {
                      </size>
                     </property>
                     <property name="toolTip">
-                     <string>多选</string>
+                     <string>全选</string>
                     </property>
                     <property name="text">
                      <string/>
@@ -985,6 +1046,9 @@ QTextEdit {
                      </size>
                     </property>
                     <property name="checkable">
+                     <bool>true</bool>
+                    </property>
+                    <property name="checked">
                      <bool>true</bool>
                     </property>
                    </widget>

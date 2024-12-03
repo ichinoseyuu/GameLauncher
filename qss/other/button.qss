@@ -1,4 +1,4 @@
-CustomButton {
+CButton {
     background-color: rgb(255, 240, 254);
     font-family: "微软雅黑";
     font-size: 10pt;
@@ -7,7 +7,7 @@ CustomButton {
     text-align: left;
     padding-left: 10px;
 }
-CustomButton:checked {
+CButton:checked {
     background-color: rgb(255, 240, 254);
     font-family: "微软雅黑";
     font-size: 10pt;
@@ -17,14 +17,14 @@ CustomButton:checked {
     text-align: left;
     padding-left: 10px;
 }
-CustomButton::icon {
+CButton::icon {
      padding-right: 10px;/* 控制图标与文字之间的间距 */
 }
-CustomButton:hover {
+CButton:hover {
     background-color: rgb(241, 230, 243);
     border-radius: 4px;
 }
-CustomButton:pressed {
+CButton:pressed {
     background-color: rgb(231, 220, 233);
     border-radius: 4px;
 }
@@ -34,8 +34,7 @@ QToolTip {
     background-color: whitesmoke;
     color: dimgray;
     border-radius: 2px;
-    border: 1px solid lightgray;
-    
+    border: 1px solid lightgray;  
 }
 
 

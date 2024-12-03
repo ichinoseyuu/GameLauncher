@@ -8,14 +8,14 @@ class Func_Main():
     pass
 
 
-class UtilityFunctions:
+class GenericFunc():
     
     def loadFile(filePath: str):
         with open(filePath, 'r', encoding='utf-8') as file:
             return file.read()
     
 
-    def calculatedGeometricPos(geometry,parentGeometry) :
+    def calculateCenterPos(geometry,parentGeometry) :
         #region 计算窗口位置
         x = parentGeometry.left()+ parentGeometry.width()/2-geometry.width()/2
         y = parentGeometry.top()+parentGeometry.height()/2-geometry.height()/2

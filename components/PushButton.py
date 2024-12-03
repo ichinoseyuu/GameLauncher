@@ -1,7 +1,6 @@
-from PySide6.QtGui import QMouseEvent
-from PySide6.QtWidgets import *
-from PySide6.QtCore import *
-from PySide6.QtGui import *
+from PySide6.QtWidgets import QPushButton, QToolTip
+from PySide6.QtCore import Qt, QSize, QProcess
+from PySide6.QtGui import QIcon,QMouseEvent
 from components import *
 import os
 
@@ -28,14 +27,12 @@ class CButton(QPushButton):
 
     def mousePressEvent(self, event):
         # 重写鼠标按下事件
-        print(self.isCheckable())
-        if self.isCheckable():
-            self.changeStyle()
+        
         if event.button() == Qt.LeftButton:
-            print("left button clicked")
-
+            if self.isCheckable():
+                self.changeStyle()
         elif event.button() == Qt.RightButton:
-            print("Right button clicked")
+            pass
         super().mousePressEvent(event)
             
             
@@ -60,8 +57,11 @@ class CButton(QPushButton):
         super().mouseMoveEvent(event)
         pass
     
-    def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
-        self.showInExplorer(self.path)
+    def mouseDoubleClickEvent(self, event: QMouseEvent):
+        if self.parent.isEditMode: return
+        if event.button() == Qt.LeftButton:
+            # 在资源管理器中显示文件
+            self.showInExplorer(self.path)
         return super().mouseDoubleClickEvent(event)
 
 
@@ -79,9 +79,9 @@ class CButton(QPushButton):
         if self.isChecked():
             # 如果按钮已经被选中，更新显示
             self.setStyleSheet(StyleManager.btnStyle)
-            print(f'selcet:{self.text()}')
+            print(f'unselcet:{self.text()}')
         else:
             # 如果按钮没有被选中，更新显示
             self.setStyleSheet(StyleManager.btnStyle)
-            print(f'unselcet:{self.text()}')
+            print(f'selcet:{self.text()}')
         # endregion

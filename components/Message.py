@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QDialog
 from PySide6.QtCore import Qt, QPropertyAnimation
 from .Ui_Message import Ui_Message
-from .Functions import UtilityFunctions
+from .Functions import GenericFunc
 
 class CMessage(QDialog, Ui_Message) :
     def __init__(self, tip = '', message = '', parent=None):
@@ -12,7 +12,7 @@ class CMessage(QDialog, Ui_Message) :
         self.setAttribute(Qt.WA_TranslucentBackground) # 表示窗口具有透明效果
         self.setModal(True)
         self.setWindowModality(Qt.ApplicationModal)
-        self.setGeometry(UtilityFunctions.calculatedGeometricPos(self.geometry(),self.parent.geometry()))
+        self.setGeometry(GenericFunc.calculateCenterPos(self.geometry(),self.parent.geometry()))
 
         self.Title.setText(tip)
         self.MessageLabel.setText(message)
@@ -46,13 +46,13 @@ class CMessage(QDialog, Ui_Message) :
         self.fadeAnim.start()  # 启动动画
 
     def mousePressEvent(self, event):
-        UtilityFunctions.mousePressEvent(self, event)
+        GenericFunc.mousePressEvent(self, event)
 
     def mouseMoveEvent(self, event):
-        UtilityFunctions.mouseMoveEvent(self, event)
+        GenericFunc.mouseMoveEvent(self, event)
 
     def mouseReleaseEvent(self, event):
-        UtilityFunctions.mouseReleaseEvent(self, event)
+        GenericFunc.mouseReleaseEvent(self, event)
 
     def paintEvent(self, event):
-        UtilityFunctions.paintShadow(self)
+        GenericFunc.paintShadow(self)

@@ -3,7 +3,7 @@ import enum
 from PySide6.QtWidgets import QDialog,QFileDialog
 from PySide6.QtCore import Qt,QPropertyAnimation
 from .Ui_FileDialog import Ui_Dialog
-from .Functions import UtilityFunctions
+from .Functions import GenericFunc
 
 class CFileDialog(QDialog, Ui_Dialog):
     class DialogMode(enum.IntEnum):
@@ -18,7 +18,7 @@ class CFileDialog(QDialog, Ui_Dialog):
         self.setAttribute(Qt.WA_TranslucentBackground) # 表示窗口具有透明效果
         self.setModal(True)
         self.setWindowModality(Qt.ApplicationModal)
-        self.setGeometry(UtilityFunctions.calculatedGeometricPos(self.geometry(),self.parent.geometry()))
+        self.setGeometry(GenericFunc.calculateCenterPos(self.geometry(),self.parent.geometry()))
 
         self.ButtonExit.clicked.connect(self.cancel)
         self.ButtonCancel.clicked.connect(self.cancel)
@@ -78,13 +78,13 @@ class CFileDialog(QDialog, Ui_Dialog):
         
 
     def mousePressEvent(self, event):
-        UtilityFunctions.mousePressEvent(self, event)
+        GenericFunc.mousePressEvent(self, event)
 
     def mouseMoveEvent(self, event):
-        UtilityFunctions.mouseMoveEvent(self, event)
+        GenericFunc.mouseMoveEvent(self, event)
 
     def mouseReleaseEvent(self, event):
-        UtilityFunctions.mouseReleaseEvent(self, event)
+        GenericFunc.mouseReleaseEvent(self, event)
 
     def paintEvent(self, event):
-        UtilityFunctions.paintShadow(self)
+        GenericFunc.paintShadow(self)

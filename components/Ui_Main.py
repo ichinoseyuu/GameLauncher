@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QHBoxLayout, QLabel,
-    QMainWindow, QPushButton, QScrollArea, QSizePolicy,
-    QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QComboBox, QGridLayout, QHBoxLayout,
+    QLabel, QMainWindow, QPushButton, QScrollArea,
+    QSizePolicy, QSpacerItem, QStackedWidget, QVBoxLayout,
+    QWidget)
 from .resources_rc import *
 
 class Ui_MainWindow(object):
@@ -29,7 +30,9 @@ class Ui_MainWindow(object):
         self.StyleSheet = QWidget(MainWindow)
         self.StyleSheet.setObjectName(u"StyleSheet")
         self.StyleSheet.setMinimumSize(QSize(1042, 738))
-        self.StyleSheet.setStyleSheet(u"#TitleWidget {\n"
+        self.StyleSheet.setStyleSheet(u"/*================\u6807\u9898\u680f\u6837\u5f0f================*/\n"
+"\n"
+"#TitleWidget {\n"
 "    border-bottom: 1px solid rgb(235, 235, 235);\n"
 "    background-color: rgb(250, 245, 245);\n"
 "}\n"
@@ -61,7 +64,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "\n"
-"/*=============================*/\n"
+"/*================\u5de6\u4fa7\u6309\u94ae\u6837\u5f0f================*/\n"
 "\n"
 "#LeftWidget {\n"
 "    border-right: 1px solid rgb(235, 235, 235);\n"
@@ -69,13 +72,13 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#LeftWidget QPushButton {\n"
-"    background-color: transparent;\n"
+"    background-colo"
+                        "r: transparent;\n"
 "}\n"
 "\n"
 "#LeftWidget QPushButton:hover {\n"
 "    background-color: gainsboro;\n"
-"    border-"
-                        "radius: 2px;\n"
+"    border-radius: 2px;\n"
 "}\n"
 "\n"
 "#LeftWidget QPushButton:pressed {\n"
@@ -83,18 +86,18 @@ class Ui_MainWindow(object):
 "    border-radius: 2px;\n"
 "}\n"
 "\n"
-"/*=============================*/\n"
+"/*================\u4e3b\u9875\u6837\u5f0f================*/\n"
 "\n"
 "#HomePage {\n"
 "    background-color: rgb(255, 246, 248);\n"
 "}\n"
 "\n"
-"#PathSetWidget{\n"
-"    background-color: rgb(250, 245, 250);\n"
-"}\n"
-"\n"
 "#HomeLabel{\n"
 "	image: url(:/images/back_ground/home_bg.png);\n"
+"}\n"
+"\n"
+"#PathSetWidget{\n"
+"    background-color: rgb(250, 245, 250);\n"
 "}\n"
 "\n"
 "#PathSetLabel{\n"
@@ -103,26 +106,10 @@ class Ui_MainWindow(object):
 "	font-weight: bold;\n"
 "	color: rgb(60, 60, 60);\n"
 "}\n"
-"#PathSetWidget QPushButton {\n"
-"    background-color: rgb(235, 235, 235);\n"
-"	color: rgb(80, 80, 80);\n"
-"    border-radius: 2px;\n"
-"}\n"
-"\n"
-"#PathSetWidget QPushButton:hover {\n"
-"    background-color: gainsboro;\n"
-"    border-radius: 2px;\n"
-"}\n"
-"\n"
-"#PathSetWidget QPushButton:pressed {\n"
-"    background-color: lightgray;\n"
-"    border-radius: 2px;\n"
-"}\n"
 "\n"
 "#PathSetTopWidget{\n"
 "    background-color: rgb(250, 245, 250);\n"
-"	border-bottom: "
-                        "1px solid rgb(235, 235, 235);\n"
+"	border-bottom: 1px solid rgb(235, 235, 235);\n"
 "}\n"
 "\n"
 "#CurrentGameLabel{\n"
@@ -133,7 +120,59 @@ class Ui_MainWindow(object):
 "	border-radius: 2px;\n"
 "}\n"
 "\n"
-"/*=============================*/\n"
+""
+                        "#GameComboBox {\n"
+"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font: 10pt;\n"
+"    color: dimgray;\n"
+"	border-radius: 2px;\n"
+"    border: 1px solid gainsboro;\n"
+"    background-color: whitesmoke;\n"
+"}\n"
+"\n"
+"#GameComboBox::drop-down {\n"
+"    width: 25px;\n"
+"    background-color: rgb(229, 222, 235);\n"
+"}\n"
+"\n"
+"#GameComboBox QAbstractItemView {\n"
+"    color: dimgray;\n"
+"    background-color: whitesmoke;\n"
+"	border-radius: 2px;\n"
+"    outline: none;\n"
+"}\n"
+"\n"
+"#GameComboBox QAbstractItemView::item:hover {\n"
+"    background-color: lightgray;\n"
+"	border-radius: 2px;\n"
+"    color: dimgray; \n"
+"}\n"
+"\n"
+"#GameComboBox QAbstractItemView::item:selected {\n"
+"    background-color: lightgray;\n"
+"	border-radius: 2px;\n"
+"    color: dimgray;\n"
+"}\n"
+"\n"
+"#PathSetWidget QPushButton {\n"
+"    background-color: rgb(235, 235, 235);\n"
+"	color: rgb(80, 80, 80);\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#PathSetWidget QPushButton:hover {\n"
+"    background-color: gainsboro;\n"
+"    border-ra"
+                        "dius: 2px;\n"
+"}\n"
+"\n"
+"#PathSetWidget QPushButton:pressed {\n"
+"    background-color: lightgray;\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"/*================\u5f00\u59cb\u9875\u6837\u5f0f================*/\n"
+"\n"
 "#StartPage {\n"
 "    background-color: rgb(255, 246, 248);\n"
 "}\n"
@@ -164,11 +203,11 @@ class Ui_MainWindow(object):
 "#StartPageScrollArea QScrollBar::sub-line:vertical {\n"
 "    background: transparent;\n"
 "    border: none;\n"
-"    heig"
-                        "ht: 0px;\n"
+"    height: 0px;\n"
 "}\n"
 "\n"
-"#StartPageScrollArea QScrollBar::up-arrow:vertical,\n"
+"#StartPageScrollArea QScrol"
+                        "lBar::up-arrow:vertical,\n"
 "#StartPageScrollArea QScrollBar::down-arrow:vertical { \n"
 "    border: none;\n"
 "    background: none;\n"
@@ -190,9 +229,8 @@ class Ui_MainWindow(object):
 "    border-radius: 2px;\n"
 "}\n"
 "#FunctionWidget QPushButton#ButtonEditFolder:checked {\n"
-"    background-color: rgb(230,230,230);\n"
+"    background-color: rgb(220, 220, 220);\n"
 "	border-radius: 2px;\n"
-"	border: 1px solid dimgray;\n"
 "}\n"
 "\n"
 "#FunctionWidget QPushButton:hover {\n"
@@ -209,12 +247,12 @@ class Ui_MainWindow(object):
 "    background-color: rgb(255, 246, 248);\n"
 "}\n"
 "\n"
-"#Botto"
-                        "mWidget{\n"
+"#BottomWidget{\n"
 "    background-color: rgb(250, 245, 250);\n"
 "}\n"
 "\n"
-"#ButtonPlay {\n"
+"#ButtonPlay"
+                        " {\n"
 "    background-color: rgb(255, 99, 134);\n"
 "	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
 "	font-size: 11pt;\n"
@@ -232,7 +270,9 @@ class Ui_MainWindow(object):
 "    background-color: rgb(230, 80, 110);\n"
 "    border-radius: 2px;\n"
 "}\n"
-"/*=============================*/\n"
+"\n"
+"/*================\u5173\u4e8e\u9875\u6837\u5f0f================*/\n"
+"\n"
 "#AboutPage { \n"
 "    background-color: rgb(255, 246, 248);\n"
 "}\n"
@@ -255,8 +295,8 @@ class Ui_MainWindow(object):
 "	margin: 0px 0px 0px 0px;\n"
 "    border-radius: 2px;\n"
 "}\n"
-"#A"
-                        "boutPageScrollArea QScrollBar::handle:vertical {\n"
+"#AboutPageScrollArea QScrollBar::handle:"
+                        "vertical {\n"
 "    background: silver;\n"
 "    min-height: 20px;\n"
 "    border-radius: 2px;\n"
@@ -299,11 +339,11 @@ class Ui_MainWindow(object):
 "#SoftwareName{\n"
 "	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
 "	font-size: 10pt;\n"
-""
-                        "	color: rgb(80, 80, 80);\n"
+"	color: rgb(80, 80, 80);\n"
 "}\n"
 "\n"
-"#SoftwareVersion{\n"
+""
+                        "#SoftwareVersion{\n"
 "	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
 "	font-size: 9pt;\n"
 "	color: dimgray;\n"
@@ -335,14 +375,15 @@ class Ui_MainWindow(object):
 "	font-weight: bold;\n"
 "	color: rgb(80, 80, 80);\n"
 "}\n"
-"\n"
-"QTextEdit {\n"
-"	background-color: transparent;\n"
-"	color: dimgray;\n"
-"    border: none;\n"
-"}\n"
 "/*=============================*/\n"
 "\n"
+"QToolTip {\n"
+"    font: 10pt;\n"
+"    background-color: whitesmoke;\n"
+"    color: dimgray;\n"
+"    border-radius: 2px;\n"
+"    border: 1px solid lightgray;  \n"
+"}\n"
 "")
         self.verticalLayout = QVBoxLayout(self.StyleSheet)
         self.verticalLayout.setSpacing(0)
@@ -479,7 +520,7 @@ class Ui_MainWindow(object):
         self.PathSetWidget.setObjectName(u"PathSetWidget")
         self.ButtonPathSet = QPushButton(self.PathSetWidget)
         self.ButtonPathSet.setObjectName(u"ButtonPathSet")
-        self.ButtonPathSet.setGeometry(QRect(840, 90, 32, 32))
+        self.ButtonPathSet.setGeometry(QRect(850, 90, 32, 32))
         self.ButtonPathSet.setMinimumSize(QSize(32, 32))
         self.ButtonPathSet.setMaximumSize(QSize(32, 32))
         icon6 = QIcon()
@@ -521,9 +562,14 @@ class Ui_MainWindow(object):
         self.ButtonChangeGame.setIconSize(QSize(24, 24))
         self.CurrentGameLabel = QLabel(self.PathSetWidget)
         self.CurrentGameLabel.setObjectName(u"CurrentGameLabel")
-        self.CurrentGameLabel.setGeometry(QRect(40, 90, 781, 32))
-        self.CurrentGameLabel.setMinimumSize(QSize(200, 32))
+        self.CurrentGameLabel.setGeometry(QRect(40, 90, 71, 32))
+        self.CurrentGameLabel.setMinimumSize(QSize(0, 32))
         self.CurrentGameLabel.setMaximumSize(QSize(16777215, 32))
+        self.GameComboBox = QComboBox(self.PathSetWidget)
+        self.GameComboBox.setObjectName(u"GameComboBox")
+        self.GameComboBox.setGeometry(QRect(120, 90, 721, 32))
+        self.GameComboBox.setMinimumSize(QSize(0, 32))
+        self.GameComboBox.setMaximumSize(QSize(16777215, 32))
 
         self.verticalLayout_3.addWidget(self.PathSetWidget)
 
@@ -559,31 +605,19 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.FunctionTitleLabel, 0, 0, 1, 1)
 
-        self.ButtonEditFolder = QPushButton(self.FunctionWidget)
-        self.ButtonEditFolder.setObjectName(u"ButtonEditFolder")
-        self.ButtonEditFolder.setMinimumSize(QSize(32, 32))
-        self.ButtonEditFolder.setMaximumSize(QSize(32, 32))
+        self.ButtonSelectAll = QPushButton(self.FunctionWidget)
+        self.ButtonSelectAll.setObjectName(u"ButtonSelectAll")
+        self.ButtonSelectAll.setMinimumSize(QSize(32, 32))
+        self.ButtonSelectAll.setMaximumSize(QSize(32, 32))
         icon9 = QIcon()
-        icon9.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        icon9.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
-        self.ButtonEditFolder.setIcon(icon9)
-        self.ButtonEditFolder.setIconSize(QSize(24, 24))
-        self.ButtonEditFolder.setCheckable(True)
+        icon9.addFile(u":/btn/main_widget/select.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon9.addFile(u":/btn/main_widget/unselect.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
+        self.ButtonSelectAll.setIcon(icon9)
+        self.ButtonSelectAll.setIconSize(QSize(24, 24))
+        self.ButtonSelectAll.setCheckable(True)
+        self.ButtonSelectAll.setChecked(True)
 
-        self.gridLayout.addWidget(self.ButtonEditFolder, 0, 4, 1, 1)
-
-        self.ButtonSelectMore = QPushButton(self.FunctionWidget)
-        self.ButtonSelectMore.setObjectName(u"ButtonSelectMore")
-        self.ButtonSelectMore.setMinimumSize(QSize(32, 32))
-        self.ButtonSelectMore.setMaximumSize(QSize(32, 32))
-        icon10 = QIcon()
-        icon10.addFile(u":/btn/main_widget/select.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        icon10.addFile(u":/btn/main_widget/unselect.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
-        self.ButtonSelectMore.setIcon(icon10)
-        self.ButtonSelectMore.setIconSize(QSize(24, 24))
-        self.ButtonSelectMore.setCheckable(True)
-
-        self.gridLayout.addWidget(self.ButtonSelectMore, 0, 2, 1, 1)
+        self.gridLayout.addWidget(self.ButtonSelectAll, 0, 2, 1, 1)
 
         self.ButtonAddFolder = QPushButton(self.FunctionWidget)
         self.ButtonAddFolder.setObjectName(u"ButtonAddFolder")
@@ -593,6 +627,19 @@ class Ui_MainWindow(object):
         self.ButtonAddFolder.setIconSize(QSize(24, 24))
 
         self.gridLayout.addWidget(self.ButtonAddFolder, 0, 3, 1, 1)
+
+        self.ButtonEditFolder = QPushButton(self.FunctionWidget)
+        self.ButtonEditFolder.setObjectName(u"ButtonEditFolder")
+        self.ButtonEditFolder.setMinimumSize(QSize(32, 32))
+        self.ButtonEditFolder.setMaximumSize(QSize(32, 32))
+        icon10 = QIcon()
+        icon10.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon10.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
+        self.ButtonEditFolder.setIcon(icon10)
+        self.ButtonEditFolder.setIconSize(QSize(24, 24))
+        self.ButtonEditFolder.setCheckable(True)
+
+        self.gridLayout.addWidget(self.ButtonEditFolder, 0, 4, 1, 1)
 
         self.ButtonDelFolder = QPushButton(self.FunctionWidget)
         self.ButtonDelFolder.setObjectName(u"ButtonDelFolder")
@@ -610,7 +657,7 @@ class Ui_MainWindow(object):
 
         self.FolderWidget = QWidget(self.StartPageScrollWidget)
         self.FolderWidget.setObjectName(u"FolderWidget")
-        self.FolderWidget.setMinimumSize(QSize(944, 550))
+        self.FolderWidget.setMinimumSize(QSize(944, 500))
         self.FolderWidget.setMaximumSize(QSize(944, 16777215))
         self.FolderGridLayout = QGridLayout(self.FolderWidget)
         self.FolderGridLayout.setObjectName(u"FolderGridLayout")
@@ -736,7 +783,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.StackedWidget.setCurrentIndex(1)
+        self.StackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -779,17 +826,17 @@ class Ui_MainWindow(object):
         self.CurrentGameLabel.setText(QCoreApplication.translate("MainWindow", u"\u5f53\u524d\u6e38\u620f\uff1a", None))
         self.FunctionTitleLabel.setText(QCoreApplication.translate("MainWindow", u"\u5e38\u7528\u6587\u4ef6\u5939", None))
 #if QT_CONFIG(tooltip)
-        self.ButtonEditFolder.setToolTip(QCoreApplication.translate("MainWindow", u"\u8fdb\u5165\u7f16\u8f91\u6a21\u5f0f", None))
+        self.ButtonSelectAll.setToolTip(QCoreApplication.translate("MainWindow", u"\u5168\u9009", None))
 #endif // QT_CONFIG(tooltip)
-        self.ButtonEditFolder.setText("")
-#if QT_CONFIG(tooltip)
-        self.ButtonSelectMore.setToolTip(QCoreApplication.translate("MainWindow", u"\u591a\u9009", None))
-#endif // QT_CONFIG(tooltip)
-        self.ButtonSelectMore.setText("")
+        self.ButtonSelectAll.setText("")
 #if QT_CONFIG(tooltip)
         self.ButtonAddFolder.setToolTip(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u6587\u4ef6\u5939", None))
 #endif // QT_CONFIG(tooltip)
         self.ButtonAddFolder.setText("")
+#if QT_CONFIG(tooltip)
+        self.ButtonEditFolder.setToolTip(QCoreApplication.translate("MainWindow", u"\u8fdb\u5165\u7f16\u8f91\u6a21\u5f0f", None))
+#endif // QT_CONFIG(tooltip)
+        self.ButtonEditFolder.setText("")
 #if QT_CONFIG(tooltip)
         self.ButtonDelFolder.setToolTip(QCoreApplication.translate("MainWindow", u"\u5220\u9664", None))
 #endif // QT_CONFIG(tooltip)

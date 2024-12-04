@@ -10,8 +10,8 @@ class CButton(QPushButton):
         self.parent = parent
         self.setText(text)
         self.path = path
-        self.setMinimumSize(184, 50)
-        self.setMaximumSize(184, 50)
+        self.setMinimumSize(180, 50)
+        self.setMaximumSize(180, 50)
         self.icon = QIcon()
         self.icon.addFile(u":/btn/main_widget/file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.setIcon(self.icon)

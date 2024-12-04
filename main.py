@@ -52,6 +52,13 @@ class MainWindow(QMainWindow):
         widgets.ButtonSelectAll.clicked.connect(self.selectAllBtns)
         widgets.ButtonSelectAll.setVisible(False)
 
+
+        # 关于页按钮
+        widgets.ButtonGitHub.clicked.connect(self.goToMyGithub)
+        widgets.ButtonCheckUpdate.clicked.connect(self.checkUpdate)
+        widgets.ButtonRemoveUerdata.clicked.connect(self.removeUserdata)
+
+
         # 添加淡入效果 (通过调整窗口的透明度)
         widgets.fadeAnim = QPropertyAnimation(self, b"windowOpacity")
         widgets.fadeAnim.setDuration(200)
@@ -119,10 +126,12 @@ class MainWindow(QMainWindow):
         if self.isEditMode:
             # 将所有存在的按钮改为checkable状态
             widgets.ButtonSelectAll.setVisible(True)
+            widgets.ButtonSelectAll.setChecked(True)
             self.btnData.toggleCheckable(btns)
             print('is edit mode')
         else:
             widgets.ButtonSelectAll.setVisible(False)
+            widgets.ButtonSelectAll.setChecked(False)
             self.btnData.toggleCheckable(btns)
             print('not edit mode')
 
@@ -300,6 +309,22 @@ class MainWindow(QMainWindow):
 
 # endregion
 
+# region aboutpage 相关函数
+
+    # 打开github
+    def goToMyGithub(self):
+        GenericFunc.openWeb('https://github.com/ichinoseyuu')
+
+    # 清除所有数据
+    def removeUserdata(self):
+        pass
+
+    # 检查更新
+    def checkUpdate(self):
+        pass
+
+
+# endregion
     def mousePressEvent(self, event):
         GenericFunc.mousePressEvent(self, event)
 

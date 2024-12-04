@@ -1,19 +1,19 @@
-import math
+import math, webbrowser
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from main import *
-
-class Func_Main():
-    pass
-
 
 class GenericFunc():
     
     def loadFile(filePath: str):
         with open(filePath, 'r', encoding='utf-8') as file:
             return file.read()
-    
+
+
+    def openWeb(webUrl: str):
+        webbrowser.open(webUrl)
+
 
     def calculateCenterPos(geometry,parentGeometry) :
         #region 计算窗口位置
@@ -22,11 +22,13 @@ class GenericFunc():
         return QRect(x, y, geometry.width(), geometry.height())
         #endregion
 
+
     def mousePressEvent(obj, event):
         #region 记录鼠标按下时的位置
         if event.buttons() == Qt.LeftButton:
             obj.old_pos = event.globalPosition().toPoint()
         #endregion
+
 
     def mouseMoveEvent(obj, event):
         #region 移动窗口
@@ -43,6 +45,7 @@ class GenericFunc():
         if event.button() == Qt.LeftButton:
             obj.old_pos = None  # 释放鼠标时重置旧位置
         #endregion
+
 
     def paintShadow(obj):
         #region 绘制窗口阴影

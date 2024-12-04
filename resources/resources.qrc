@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="btn">
+    <file>main_widget/github.png</file>
+    <file>main_widget/cheak_update.png</file>
+    <file>main_widget/Clear_1.png</file>
     <file>main_widget/back.png</file>
     <file>main_widget/next.png</file>
     <file>left_widget/start.png</file>
@@ -21,6 +24,8 @@
     <file>main_widget/unselect.png</file>
   </qresource>
   <qresource prefix="images">
+    <file>back_ground/start_bg.png</file>
+    <file>icon/touxiang.png</file>
     <file>icon/icon.png</file>
     <file>back_ground/home_bg.png</file>
   </qresource>

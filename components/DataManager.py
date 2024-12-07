@@ -14,7 +14,7 @@ class UserData():
         UserData.settings.setValue('version', '1.0.0')
         if UserData.settings.value('theme') is None:
             UserData.settings.setValue('theme', 'light')
-        if UserData.settings.value('current_game') is None:
+        if (UserData.settings.value('current_game') == None) | (UserData.settings.value('current_game') == ''):
             UserData.settings.setValue('current_game', 'none')
         dataDir = os.path.dirname(UserData.dataFile)
         # 确保 Data 文件夹存在

@@ -122,17 +122,23 @@ class MainWindow(QMainWindow):
         if self.currentGame =='none':
             self.tip = CDynamicTip('你还未添加游戏，无法删除', CDynamicTip.PosMode.Center, self)
             return
+        # 删除游戏
+        UserData.games.pop(self.currentGame)
+        widgets.GameComboBox.removeItem(widgets.GameComboBox.currentIndex())
+        
+        # 判断下一个游戏
+        currntGame = widgets.GameComboBox.currentText()
+        # 如果已经删除所有项目，则将currentGame设为'none'
         if widgets.GameComboBox.currentText() == '':
             self.isChooseGameFile = False
             self.currentGame = 'none'
+            UserData.settings.setValue('current_game', 'none')
             widgets.CurrentGamePic.clear()
             self.btnData.removeAllBtns()
-            self.tip = CDynamicTip('你未选中任何游戏，无法删除', CDynamicTip.PosMode.Center, self)
             return
-        UserData.games.pop(self.currentGame)
-        widgets.GameComboBox.removeItem(widgets.GameComboBox.currentIndex())
-        currntGame = widgets.GameComboBox.currentText()
+        # 如果还剩有其他游戏，则切换到其他游戏
         self.currentGame = currntGame
+        UserData.settings.setValue('current_game', currntGame)
         self.btnData.removeAllBtns()
         if UserData.isNewGame(currntGame): return
         self.loadPic(UserData.games[self.currentGame]['path'], widgets.CurrentGamePic) # 加载游戏图片

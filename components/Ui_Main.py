@@ -39,7 +39,7 @@ class Ui_MainWindow(object):
 "\n"
 "#Title {\n"
 "	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"    font: 12pt;\n"
+"    font: 11pt;\n"
 "    border: none;\n"
 "    background-color: transparent;\n"
 "    color: rgb(60, 60, 60);\n"
@@ -219,6 +219,7 @@ class Ui_MainWindow(object):
 "\n"
 "#FunctionWidget {\n"
 "    background: rgb(255, 246, 248);\n"
+"	border-bottom: 1px solid rgb(235, 235, 235)\n"
 "}\n"
 "\n"
 "#FunctionTitleLabel{\n"
@@ -250,10 +251,11 @@ class Ui_MainWindow(object):
 "#FolderWidget{\n"
 "    background-color: rgb(255, 246, 248);\n"
 "}\n"
-"\n"
+""
+                        "\n"
 "#BottomWidget{\n"
-"    background-color: rg"
-                        "b(250, 245, 250);\n"
+"    background-color: rgb(240, 240, 245);\n"
+"	border-top: 1px solid rgb(235, 235, 235);\n"
 "}\n"
 "\n"
 "#ButtonPlay {\n"
@@ -294,13 +296,13 @@ class Ui_MainWindow(object):
 "#AboutPageScrollWidget{\n"
 "    background: rgb(255, 246, 248);\n"
 "}\n"
-"#AboutPageScrollArea QScrollBar:vertical {\n"
+"#AboutPageScrollArea QScrollB"
+                        "ar:vertical {\n"
 "	width: 6px;\n"
 "	margin: 0px 0px 0px 0px;\n"
 "    border-radius: 2px;\n"
 "}\n"
-""
-                        "#AboutPageScrollArea QScrollBar::handle:vertical {\n"
+"#AboutPageScrollArea QScrollBar::handle:vertical {\n"
 "    background: silver;\n"
 "    min-height: 20px;\n"
 "    border-radius: 2px;\n"
@@ -338,13 +340,13 @@ class Ui_MainWindow(object):
 "\n"
 "#SoftwarePic{\n"
 "	image: url(:/images/icon/icon.png);\n"
-"}\n"
+""
+                        "}\n"
 "\n"
 "#SoftwareName{\n"
 "	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
 "	font-size: 9pt;\n"
-""
-                        "	font-weight: bold;\n"
+"	font-weight: bold;\n"
 "	color: rgb(80, 80, 80);\n"
 "}\n"
 "\n"
@@ -386,11 +388,11 @@ class Ui_MainWindow(object):
 "    background-color: lightgray;\n"
 "    border-radius: 2px;\n"
 "}\n"
-"#CopyrightLabel{\n"
+"#"
+                        "CopyrightLabel{\n"
 "	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
 "	font-size: 9pt;\n"
-"	color: di"
-                        "mgray\n"
+"	color: dimgray\n"
 "}\n"
 "\n"
 "/*=============================*/\n"
@@ -412,7 +414,7 @@ class Ui_MainWindow(object):
         self.TitleWidget.setMinimumSize(QSize(0, 40))
         self.TitleWidget.setMaximumSize(QSize(16777215, 40))
         self.hboxLayout = QHBoxLayout(self.TitleWidget)
-        self.hboxLayout.setSpacing(15)
+        self.hboxLayout.setSpacing(12)
         self.hboxLayout.setObjectName(u"hboxLayout")
         self.hboxLayout.setContentsMargins(15, 0, 15, 0)
         self.Icon = QLabel(self.TitleWidget)
@@ -547,9 +549,9 @@ class Ui_MainWindow(object):
         self.ButtonPathSet.setIconSize(QSize(24, 24))
         self.PathSetTopWidget = QWidget(self.PathSetWidget)
         self.PathSetTopWidget.setObjectName(u"PathSetTopWidget")
-        self.PathSetTopWidget.setGeometry(QRect(0, 0, 964, 60))
-        self.PathSetTopWidget.setMinimumSize(QSize(964, 60))
-        self.PathSetTopWidget.setMaximumSize(QSize(16777215, 60))
+        self.PathSetTopWidget.setGeometry(QRect(0, 0, 964, 40))
+        self.PathSetTopWidget.setMinimumSize(QSize(964, 40))
+        self.PathSetTopWidget.setMaximumSize(QSize(16777215, 40))
         self.horizontalLayout_3 = QHBoxLayout(self.PathSetTopWidget)
         self.horizontalLayout_3.setSpacing(9)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
@@ -569,15 +571,15 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.ButtonNext)
 
-        self.ButtonChangeGame = QPushButton(self.PathSetWidget)
-        self.ButtonChangeGame.setObjectName(u"ButtonChangeGame")
-        self.ButtonChangeGame.setGeometry(QRect(890, 90, 32, 32))
-        self.ButtonChangeGame.setMinimumSize(QSize(32, 32))
-        self.ButtonChangeGame.setMaximumSize(QSize(32, 32))
+        self.ButtonRemoveGame = QPushButton(self.PathSetWidget)
+        self.ButtonRemoveGame.setObjectName(u"ButtonRemoveGame")
+        self.ButtonRemoveGame.setGeometry(QRect(890, 90, 32, 32))
+        self.ButtonRemoveGame.setMinimumSize(QSize(32, 32))
+        self.ButtonRemoveGame.setMaximumSize(QSize(32, 32))
         icon8 = QIcon()
-        icon8.addFile(u":/btn/main_widget/switch.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ButtonChangeGame.setIcon(icon8)
-        self.ButtonChangeGame.setIconSize(QSize(24, 24))
+        icon8.addFile(u":/btn/main_widget/clear.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonRemoveGame.setIcon(icon8)
+        self.ButtonRemoveGame.setIconSize(QSize(24, 24))
         self.CurrentGameLabel = QLabel(self.PathSetWidget)
         self.CurrentGameLabel.setObjectName(u"CurrentGameLabel")
         self.CurrentGameLabel.setGeometry(QRect(50, 90, 61, 32))
@@ -605,7 +607,7 @@ class Ui_MainWindow(object):
         self.StartPageScrollArea.setWidgetResizable(True)
         self.StartPageScrollWidget = QWidget()
         self.StartPageScrollWidget.setObjectName(u"StartPageScrollWidget")
-        self.StartPageScrollWidget.setGeometry(QRect(0, 0, 964, 630))
+        self.StartPageScrollWidget.setGeometry(QRect(0, 0, 964, 616))
         self.StartPageScrollWidget.setMinimumSize(QSize(0, 0))
         self.verticalLayout_5 = QVBoxLayout(self.StartPageScrollWidget)
         self.verticalLayout_5.setSpacing(0)
@@ -625,48 +627,10 @@ class Ui_MainWindow(object):
         self.gridLayout = QGridLayout(self.FunctionWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(6, 6, 6, 6)
-        self.ButtonDelFolder = QPushButton(self.FunctionWidget)
-        self.ButtonDelFolder.setObjectName(u"ButtonDelFolder")
-        self.ButtonDelFolder.setMinimumSize(QSize(32, 32))
-        self.ButtonDelFolder.setMaximumSize(QSize(32, 32))
-        icon9 = QIcon()
-        icon9.addFile(u":/btn/main_widget/clear.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ButtonDelFolder.setIcon(icon9)
-        self.ButtonDelFolder.setIconSize(QSize(24, 24))
-
-        self.gridLayout.addWidget(self.ButtonDelFolder, 0, 1, 1, 1)
-
-        self.ButtonSelectAll = QPushButton(self.FunctionWidget)
-        self.ButtonSelectAll.setObjectName(u"ButtonSelectAll")
-        self.ButtonSelectAll.setMinimumSize(QSize(32, 32))
-        self.ButtonSelectAll.setMaximumSize(QSize(32, 32))
-        icon10 = QIcon()
-        icon10.addFile(u":/btn/main_widget/select.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        icon10.addFile(u":/btn/main_widget/unselect.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
-        self.ButtonSelectAll.setIcon(icon10)
-        self.ButtonSelectAll.setIconSize(QSize(24, 24))
-        self.ButtonSelectAll.setCheckable(True)
-        self.ButtonSelectAll.setChecked(True)
-
-        self.gridLayout.addWidget(self.ButtonSelectAll, 0, 2, 1, 1)
-
-        self.ButtonEditFolder = QPushButton(self.FunctionWidget)
-        self.ButtonEditFolder.setObjectName(u"ButtonEditFolder")
-        self.ButtonEditFolder.setMinimumSize(QSize(32, 32))
-        self.ButtonEditFolder.setMaximumSize(QSize(32, 32))
-        icon11 = QIcon()
-        icon11.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        icon11.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
-        self.ButtonEditFolder.setIcon(icon11)
-        self.ButtonEditFolder.setIconSize(QSize(24, 24))
-        self.ButtonEditFolder.setCheckable(True)
-
-        self.gridLayout.addWidget(self.ButtonEditFolder, 0, 4, 1, 1)
-
         self.FunctionTitleLabel = QLabel(self.FunctionWidget)
         self.FunctionTitleLabel.setObjectName(u"FunctionTitleLabel")
 
-        self.gridLayout.addWidget(self.FunctionTitleLabel, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.FunctionTitleLabel, 0, 1, 1, 1)
 
         self.ButtonAddFolder = QPushButton(self.FunctionWidget)
         self.ButtonAddFolder.setObjectName(u"ButtonAddFolder")
@@ -675,19 +639,55 @@ class Ui_MainWindow(object):
         self.ButtonAddFolder.setIcon(icon6)
         self.ButtonAddFolder.setIconSize(QSize(24, 24))
 
-        self.gridLayout.addWidget(self.ButtonAddFolder, 0, 3, 1, 1)
+        self.gridLayout.addWidget(self.ButtonAddFolder, 0, 4, 1, 1)
+
+        self.ButtonSelectAll = QPushButton(self.FunctionWidget)
+        self.ButtonSelectAll.setObjectName(u"ButtonSelectAll")
+        self.ButtonSelectAll.setMinimumSize(QSize(32, 32))
+        self.ButtonSelectAll.setMaximumSize(QSize(32, 32))
+        icon9 = QIcon()
+        icon9.addFile(u":/btn/main_widget/select.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon9.addFile(u":/btn/main_widget/unselect.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
+        self.ButtonSelectAll.setIcon(icon9)
+        self.ButtonSelectAll.setIconSize(QSize(24, 24))
+        self.ButtonSelectAll.setCheckable(True)
+        self.ButtonSelectAll.setChecked(True)
+
+        self.gridLayout.addWidget(self.ButtonSelectAll, 0, 3, 1, 1)
+
+        self.ButtonDelFolder = QPushButton(self.FunctionWidget)
+        self.ButtonDelFolder.setObjectName(u"ButtonDelFolder")
+        self.ButtonDelFolder.setMinimumSize(QSize(32, 32))
+        self.ButtonDelFolder.setMaximumSize(QSize(32, 32))
+        self.ButtonDelFolder.setIcon(icon8)
+        self.ButtonDelFolder.setIconSize(QSize(24, 24))
+
+        self.gridLayout.addWidget(self.ButtonDelFolder, 0, 2, 1, 1)
+
+        self.ButtonEditFolder = QPushButton(self.FunctionWidget)
+        self.ButtonEditFolder.setObjectName(u"ButtonEditFolder")
+        self.ButtonEditFolder.setMinimumSize(QSize(32, 32))
+        self.ButtonEditFolder.setMaximumSize(QSize(32, 32))
+        icon10 = QIcon()
+        icon10.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon10.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
+        self.ButtonEditFolder.setIcon(icon10)
+        self.ButtonEditFolder.setIconSize(QSize(24, 24))
+        self.ButtonEditFolder.setCheckable(True)
+
+        self.gridLayout.addWidget(self.ButtonEditFolder, 0, 5, 1, 1)
 
 
         self.verticalLayout_5.addWidget(self.FunctionWidget)
 
         self.FolderWidget = QWidget(self.StartPageScrollWidget)
         self.FolderWidget.setObjectName(u"FolderWidget")
-        self.FolderWidget.setMinimumSize(QSize(958, 192))
+        self.FolderWidget.setMinimumSize(QSize(958, 178))
         self.FolderWidget.setMaximumSize(QSize(958, 16777215))
         self.FolderGridLayout = QGridLayout(self.FolderWidget)
         self.FolderGridLayout.setSpacing(9)
         self.FolderGridLayout.setObjectName(u"FolderGridLayout")
-        self.FolderGridLayout.setContentsMargins(15, 9, 16, 9)
+        self.FolderGridLayout.setContentsMargins(14, 9, 14, 9)
 
         self.verticalLayout_5.addWidget(self.FolderWidget)
 
@@ -697,20 +697,27 @@ class Ui_MainWindow(object):
 
         self.BottomWidget = QWidget(self.StartPage)
         self.BottomWidget.setObjectName(u"BottomWidget")
-        self.BottomWidget.setMinimumSize(QSize(0, 50))
-        self.BottomWidget.setMaximumSize(QSize(16777215, 50))
+        self.BottomWidget.setMinimumSize(QSize(0, 64))
+        self.BottomWidget.setMaximumSize(QSize(16777215, 64))
         self.horizontalLayout_2 = QHBoxLayout(self.BottomWidget)
-        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setSpacing(15)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.horizontalLayout_2.setContentsMargins(6, 6, 6, 6)
+        self.horizontalLayout_2.setContentsMargins(15, 0, 15, 0)
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
+        self.CurrentGamePic = QLabel(self.BottomWidget)
+        self.CurrentGamePic.setObjectName(u"CurrentGamePic")
+        self.CurrentGamePic.setMinimumSize(QSize(42, 42))
+        self.CurrentGamePic.setMaximumSize(QSize(42, 42))
+
+        self.horizontalLayout_2.addWidget(self.CurrentGamePic)
+
         self.ButtonPlay = QPushButton(self.BottomWidget)
         self.ButtonPlay.setObjectName(u"ButtonPlay")
-        self.ButtonPlay.setMinimumSize(QSize(96, 38))
-        self.ButtonPlay.setMaximumSize(QSize(96, 38))
+        self.ButtonPlay.setMinimumSize(QSize(96, 42))
+        self.ButtonPlay.setMaximumSize(QSize(96, 42))
         self.ButtonPlay.setIconSize(QSize(24, 24))
 
         self.horizontalLayout_2.addWidget(self.ButtonPlay)
@@ -731,6 +738,7 @@ class Ui_MainWindow(object):
         self.AboutPageScrollArea.setWidgetResizable(True)
         self.AboutPageScrollWidget = QWidget()
         self.AboutPageScrollWidget.setObjectName(u"AboutPageScrollWidget")
+        self.AboutPageScrollWidget.setGeometry(QRect(0, 0, 964, 680))
         self.verticalLayout_7 = QVBoxLayout(self.AboutPageScrollWidget)
         self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
@@ -779,27 +787,27 @@ class Ui_MainWindow(object):
         self.ButtonGitHub.setGeometry(QRect(290, 200, 151, 32))
         self.ButtonGitHub.setMinimumSize(QSize(120, 32))
         self.ButtonGitHub.setMaximumSize(QSize(16777215, 32))
-        icon12 = QIcon()
-        icon12.addFile(u":/btn/main_widget/github.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ButtonGitHub.setIcon(icon12)
+        icon11 = QIcon()
+        icon11.addFile(u":/btn/main_widget/github.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonGitHub.setIcon(icon11)
         self.ButtonGitHub.setIconSize(QSize(24, 24))
         self.ButtonCheckUpdate = QPushButton(self.SoftwareInfoWidget)
         self.ButtonCheckUpdate.setObjectName(u"ButtonCheckUpdate")
         self.ButtonCheckUpdate.setGeometry(QRect(30, 200, 100, 32))
         self.ButtonCheckUpdate.setMinimumSize(QSize(100, 32))
         self.ButtonCheckUpdate.setMaximumSize(QSize(16777215, 32))
-        icon13 = QIcon()
-        icon13.addFile(u":/btn/main_widget/cheak_update.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ButtonCheckUpdate.setIcon(icon13)
+        icon12 = QIcon()
+        icon12.addFile(u":/btn/main_widget/cheak_update.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonCheckUpdate.setIcon(icon12)
         self.ButtonCheckUpdate.setIconSize(QSize(24, 24))
         self.ButtonRemoveUerdata = QPushButton(self.SoftwareInfoWidget)
         self.ButtonRemoveUerdata.setObjectName(u"ButtonRemoveUerdata")
         self.ButtonRemoveUerdata.setGeometry(QRect(160, 200, 100, 32))
         self.ButtonRemoveUerdata.setMinimumSize(QSize(100, 32))
         self.ButtonRemoveUerdata.setMaximumSize(QSize(16777215, 32))
-        icon14 = QIcon()
-        icon14.addFile(u":/btn/main_widget/Clear_1.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ButtonRemoveUerdata.setIcon(icon14)
+        icon13 = QIcon()
+        icon13.addFile(u":/btn/main_widget/Clear_1.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonRemoveUerdata.setIcon(icon13)
         self.ButtonRemoveUerdata.setIconSize(QSize(24, 24))
         self.CopyrightLabel = QLabel(self.SoftwareInfoWidget)
         self.CopyrightLabel.setObjectName(u"CopyrightLabel")
@@ -859,32 +867,33 @@ class Ui_MainWindow(object):
         self.ButtonPathSet.setToolTip(QCoreApplication.translate("MainWindow", u"\u9009\u62e9\u6587\u4ef6\u5939", None))
 #endif // QT_CONFIG(tooltip)
         self.ButtonPathSet.setText("")
-        self.PathSetLabel.setText(QCoreApplication.translate("MainWindow", u"\u8bbe\u7f6e\u6e38\u620f\u8def\u5f84", None))
+        self.PathSetLabel.setText(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0", None))
 #if QT_CONFIG(tooltip)
         self.ButtonNext.setToolTip(QCoreApplication.translate("MainWindow", u"\u4e0b\u4e00\u6b65", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(tooltip)
-        self.ButtonChangeGame.setToolTip(QCoreApplication.translate("MainWindow", u"\u5207\u6362\u6e38\u620f", None))
+        self.ButtonRemoveGame.setToolTip(QCoreApplication.translate("MainWindow", u"\u5220\u9664\u5f53\u524d\u6e38\u620f", None))
 #endif // QT_CONFIG(tooltip)
-        self.ButtonChangeGame.setText("")
+        self.ButtonRemoveGame.setText("")
         self.CurrentGameLabel.setText(QCoreApplication.translate("MainWindow", u"\u5f53\u524d\u6e38\u620f\uff1a", None))
-#if QT_CONFIG(tooltip)
-        self.ButtonDelFolder.setToolTip(QCoreApplication.translate("MainWindow", u"\u5220\u9664", None))
-#endif // QT_CONFIG(tooltip)
-        self.ButtonDelFolder.setText("")
-#if QT_CONFIG(tooltip)
-        self.ButtonSelectAll.setToolTip(QCoreApplication.translate("MainWindow", u"\u5168\u9009", None))
-#endif // QT_CONFIG(tooltip)
-        self.ButtonSelectAll.setText("")
-#if QT_CONFIG(tooltip)
-        self.ButtonEditFolder.setToolTip(QCoreApplication.translate("MainWindow", u"\u8fdb\u5165\u7f16\u8f91\u6a21\u5f0f", None))
-#endif // QT_CONFIG(tooltip)
-        self.ButtonEditFolder.setText("")
         self.FunctionTitleLabel.setText(QCoreApplication.translate("MainWindow", u"\u5e38\u7528\u6587\u4ef6\u5939", None))
 #if QT_CONFIG(tooltip)
         self.ButtonAddFolder.setToolTip(QCoreApplication.translate("MainWindow", u"\u6dfb\u52a0\u6587\u4ef6\u5939", None))
 #endif // QT_CONFIG(tooltip)
         self.ButtonAddFolder.setText("")
+#if QT_CONFIG(tooltip)
+        self.ButtonSelectAll.setToolTip(QCoreApplication.translate("MainWindow", u"\u5168\u9009", None))
+#endif // QT_CONFIG(tooltip)
+        self.ButtonSelectAll.setText("")
+#if QT_CONFIG(tooltip)
+        self.ButtonDelFolder.setToolTip(QCoreApplication.translate("MainWindow", u"\u5220\u9664", None))
+#endif // QT_CONFIG(tooltip)
+        self.ButtonDelFolder.setText("")
+#if QT_CONFIG(tooltip)
+        self.ButtonEditFolder.setToolTip(QCoreApplication.translate("MainWindow", u"\u8fdb\u5165\u7f16\u8f91\u6a21\u5f0f", None))
+#endif // QT_CONFIG(tooltip)
+        self.ButtonEditFolder.setText("")
+        self.CurrentGamePic.setText("")
         self.ButtonPlay.setText(QCoreApplication.translate("MainWindow", u"\u5f00\u59cb\u6e38\u620f", None))
         self.SoftwareInfoTitle.setText(QCoreApplication.translate("MainWindow", u"\u8f6f\u4ef6\u4fe1\u606f", None))
         self.SoftwarePic.setText("")

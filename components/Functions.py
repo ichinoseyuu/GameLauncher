@@ -15,12 +15,18 @@ class GenericFunc():
         webbrowser.open(webUrl)
 
 
-    def calculateCenterPos(geometry,parentGeometry) :
-        #region 计算窗口位置
+    def calculateGlobalCenterPos(geometry,parentGeometry) :
+        #region 计算全局中心位置
         x = parentGeometry.left()+ parentGeometry.width()/2-geometry.width()/2
         y = parentGeometry.top()+parentGeometry.height()/2-geometry.height()/2
         return QRect(x, y, geometry.width(), geometry.height())
         #endregion
+
+    def calculateLocalCenterPos(geometry,parentGeometry) :
+        #region 计算父窗口中心位置
+        x = parentGeometry.width()/2-geometry.width()/2
+        y = parentGeometry.height()/2-geometry.height()/2
+        return QRect(x, y, geometry.width(), geometry.height())
 
 
     def mousePressEvent(obj, event):
@@ -54,7 +60,7 @@ class GenericFunc():
         painter = QPainter(obj)
         painter.setRenderHint(QPainter.Antialiasing, True)  # 设置抗锯齿
         # 设置初始颜色
-        color = QColor(100, 100, 100, 30)
+        color = QColor(140, 140, 140, 30)
         # 循环绘制多个渐变阴影圆角矩形
         for i in range(m):
             # 设置透明度，随着i增大逐渐变透明
@@ -63,4 +69,6 @@ class GenericFunc():
             painter.setPen(QPen(color, 1, Qt.SolidLine)) # 设置笔刷颜色和线宽
             # 绘制圆角矩形
             painter.drawRoundedRect(QRect(m - i, m - i, obj.width() - (m - i) * 2, obj.height() - (m - i) * 2), 0, 0)
+        painter.end()
         #endregion
+

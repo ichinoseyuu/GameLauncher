@@ -12,7 +12,7 @@ class CMessage(QDialog, Ui_Message) :
         self.setAttribute(Qt.WA_TranslucentBackground) # 表示窗口具有透明效果
         self.setModal(True)
         self.setWindowModality(Qt.ApplicationModal)
-        self.setGeometry(GenericFunc.calculateCenterPos(self.geometry(),self.parent.geometry()))
+        self.setGeometry(GenericFunc.calculateGlobalCenterPos(self.geometry(),self.parent.geometry()))
 
         self.Title.setText(tip)
         self.MessageLabel.setText(message)
@@ -29,7 +29,7 @@ class CMessage(QDialog, Ui_Message) :
         self.fadeAnim.start()
     
     def exec(self):
-        return super().exec()     
+        return super().exec()
     
     def cancel(self):
         # 当点击退出按钮时，执行淡出动画并关闭窗口
@@ -55,4 +55,5 @@ class CMessage(QDialog, Ui_Message) :
         GenericFunc.mouseReleaseEvent(self, event)
 
     def paintEvent(self, event):
+        super().paintEvent(event)
         GenericFunc.paintShadow(self)

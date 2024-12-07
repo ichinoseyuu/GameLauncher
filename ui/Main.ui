@@ -33,7 +33,7 @@
 
 #Title {
 	font-family: &quot;微软雅黑&quot;;
-    font: 12pt;
+    font: 11pt;
     border: none;
     background-color: transparent;
     color: rgb(60, 60, 60);
@@ -209,6 +209,7 @@
 
 #FunctionWidget {
     background: rgb(255, 246, 248);
+	border-bottom: 1px solid rgb(235, 235, 235)
 }
 
 #FunctionTitleLabel{
@@ -242,7 +243,8 @@
 }
 
 #BottomWidget{
-    background-color: rgb(250, 245, 250);
+    background-color: rgb(240, 240, 245);
+	border-top: 1px solid rgb(235, 235, 235);
 }
 
 #ButtonPlay {
@@ -422,7 +424,7 @@ QToolTip {
       </property>
       <layout class="QHBoxLayout">
        <property name="spacing">
-        <number>15</number>
+        <number>12</number>
        </property>
        <property name="leftMargin">
         <number>15</number>
@@ -693,7 +695,7 @@ QToolTip {
        <item>
         <widget class="QStackedWidget" name="StackedWidget">
          <property name="currentIndex">
-          <number>1</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="HomePage">
           <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -774,19 +776,19 @@ QToolTip {
                 <x>0</x>
                 <y>0</y>
                 <width>964</width>
-                <height>60</height>
+                <height>40</height>
                </rect>
               </property>
               <property name="minimumSize">
                <size>
                 <width>964</width>
-                <height>60</height>
+                <height>40</height>
                </size>
               </property>
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
-                <height>60</height>
+                <height>40</height>
                </size>
               </property>
               <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -808,7 +810,7 @@ QToolTip {
                <item>
                 <widget class="QLabel" name="PathSetLabel">
                  <property name="text">
-                  <string>设置游戏路径</string>
+                  <string>添加</string>
                  </property>
                 </widget>
                </item>
@@ -837,7 +839,7 @@ QToolTip {
                </item>
               </layout>
              </widget>
-             <widget class="QPushButton" name="ButtonChangeGame">
+             <widget class="QPushButton" name="ButtonRemoveGame">
               <property name="geometry">
                <rect>
                 <x>890</x>
@@ -859,14 +861,14 @@ QToolTip {
                </size>
               </property>
               <property name="toolTip">
-               <string>切换游戏</string>
+               <string>删除当前游戏</string>
               </property>
               <property name="text">
                <string/>
               </property>
               <property name="icon">
                <iconset resource="../resources/resources.qrc">
-                <normaloff>:/btn/main_widget/switch.png</normaloff>:/btn/main_widget/switch.png</iconset>
+                <normaloff>:/btn/main_widget/clear.png</normaloff>:/btn/main_widget/clear.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -966,7 +968,7 @@ QToolTip {
                 <x>0</x>
                 <y>0</y>
                 <width>964</width>
-                <height>630</height>
+                <height>616</height>
                </rect>
               </property>
               <property name="minimumSize">
@@ -1035,7 +1037,14 @@ QToolTip {
                    <number>6</number>
                   </property>
                   <item row="0" column="1">
-                   <widget class="QPushButton" name="ButtonDelFolder">
+                   <widget class="QLabel" name="FunctionTitleLabel">
+                    <property name="text">
+                     <string>常用文件夹</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="4">
+                   <widget class="QPushButton" name="ButtonAddFolder">
                     <property name="minimumSize">
                      <size>
                       <width>32</width>
@@ -1049,14 +1058,14 @@ QToolTip {
                      </size>
                     </property>
                     <property name="toolTip">
-                     <string>删除</string>
+                     <string>添加文件夹</string>
                     </property>
                     <property name="text">
                      <string/>
                     </property>
                     <property name="icon">
                      <iconset resource="../resources/resources.qrc">
-                      <normaloff>:/btn/main_widget/clear.png</normaloff>:/btn/main_widget/clear.png</iconset>
+                      <normaloff>:/btn/main_widget/increase.png</normaloff>:/btn/main_widget/increase.png</iconset>
                     </property>
                     <property name="iconSize">
                      <size>
@@ -1066,7 +1075,7 @@ QToolTip {
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="2">
+                  <item row="0" column="3">
                    <widget class="QPushButton" name="ButtonSelectAll">
                     <property name="minimumSize">
                      <size>
@@ -1105,7 +1114,39 @@ QToolTip {
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="4">
+                  <item row="0" column="2">
+                   <widget class="QPushButton" name="ButtonDelFolder">
+                    <property name="minimumSize">
+                     <size>
+                      <width>32</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>32</width>
+                      <height>32</height>
+                     </size>
+                    </property>
+                    <property name="toolTip">
+                     <string>删除</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="icon">
+                     <iconset resource="../resources/resources.qrc">
+                      <normaloff>:/btn/main_widget/clear.png</normaloff>:/btn/main_widget/clear.png</iconset>
+                    </property>
+                    <property name="iconSize">
+                     <size>
+                      <width>24</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="5">
                    <widget class="QPushButton" name="ButtonEditFolder">
                     <property name="minimumSize">
                      <size>
@@ -1141,45 +1182,6 @@ QToolTip {
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="FunctionTitleLabel">
-                    <property name="text">
-                     <string>常用文件夹</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="3">
-                   <widget class="QPushButton" name="ButtonAddFolder">
-                    <property name="minimumSize">
-                     <size>
-                      <width>32</width>
-                      <height>32</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>32</width>
-                      <height>32</height>
-                     </size>
-                    </property>
-                    <property name="toolTip">
-                     <string>添加文件夹</string>
-                    </property>
-                    <property name="text">
-                     <string/>
-                    </property>
-                    <property name="icon">
-                     <iconset resource="../resources/resources.qrc">
-                      <normaloff>:/btn/main_widget/increase.png</normaloff>:/btn/main_widget/increase.png</iconset>
-                    </property>
-                    <property name="iconSize">
-                     <size>
-                      <width>24</width>
-                      <height>24</height>
-                     </size>
-                    </property>
-                   </widget>
-                  </item>
                  </layout>
                 </widget>
                </item>
@@ -1188,7 +1190,7 @@ QToolTip {
                  <property name="minimumSize">
                   <size>
                    <width>958</width>
-                   <height>192</height>
+                   <height>178</height>
                   </size>
                  </property>
                  <property name="maximumSize">
@@ -1225,30 +1227,30 @@ QToolTip {
              <property name="minimumSize">
               <size>
                <width>0</width>
-               <height>50</height>
+               <height>64</height>
               </size>
              </property>
              <property name="maximumSize">
               <size>
                <width>16777215</width>
-               <height>50</height>
+               <height>64</height>
               </size>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_2">
               <property name="spacing">
-               <number>0</number>
+               <number>15</number>
               </property>
               <property name="leftMargin">
-               <number>6</number>
+               <number>15</number>
               </property>
               <property name="topMargin">
-               <number>6</number>
+               <number>0</number>
               </property>
               <property name="rightMargin">
-               <number>6</number>
+               <number>15</number>
               </property>
               <property name="bottomMargin">
-               <number>6</number>
+               <number>0</number>
               </property>
               <item>
                <spacer name="horizontalSpacer">
@@ -1264,17 +1266,36 @@ QToolTip {
                </spacer>
               </item>
               <item>
+               <widget class="QLabel" name="CurrentGamePic">
+                <property name="minimumSize">
+                 <size>
+                  <width>42</width>
+                  <height>42</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>42</width>
+                  <height>42</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="ButtonPlay">
                 <property name="minimumSize">
                  <size>
                   <width>96</width>
-                  <height>38</height>
+                  <height>42</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
                   <width>96</width>
-                  <height>38</height>
+                  <height>42</height>
                  </size>
                 </property>
                 <property name="text">
@@ -1322,6 +1343,14 @@ QToolTip {
               <bool>true</bool>
              </property>
              <widget class="QWidget" name="AboutPageScrollWidget">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>964</width>
+                <height>680</height>
+               </rect>
+              </property>
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <property name="spacing">
                 <number>0</number>
@@ -1449,7 +1478,7 @@ QToolTip {
                    </size>
                   </property>
                   <property name="text">
-                   <string>Version：1.0.0b</string>
+                   <string>Version：1.0.0</string>
                   </property>
                  </widget>
                  <widget class="QLabel" name="DeveloperPic">

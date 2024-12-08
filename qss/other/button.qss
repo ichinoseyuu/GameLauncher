@@ -18,7 +18,8 @@ CButton:checked {
     padding-left: 10px;
 }
 CButton::icon {
-     padding-right: 10px;/* 控制图标与文字之间的间距 */
+    padding-right: 10px;/* 控制图标与文字之间的间距 */
+    color: #AAAAAA;
 }
 CButton:hover {
     background-color: rgb(241, 230, 243);
@@ -35,6 +36,27 @@ QToolTip {
     color: dimgray;
     border-radius: 2px;
     border: 1px solid lightgray;  
+}
+
+QMenu {
+    font: 10pt;
+    color: dimgray;
+    border-radius: 2px;
+    background-color: whitesmoke;
+    border: 1px solid lightgray;
+}
+
+QMenu::item {
+    height: auto;
+    width: auto;
+}
+
+QMenu::item:selected {
+    background-color: lightgray;
+}
+
+QMenu::item:disabled {
+    color: #AAAAAA;
 }
 
 

@@ -30,7 +30,9 @@ class Ui_MainWindow(object):
         self.StyleSheet = QWidget(MainWindow)
         self.StyleSheet.setObjectName(u"StyleSheet")
         self.StyleSheet.setMinimumSize(QSize(1042, 738))
-        self.StyleSheet.setStyleSheet(u"/*================\u6807\u9898\u680f\u6837\u5f0f================*/\n"
+        self.StyleSheet.setStyleSheet(u"/*=============================================================================*/\n"
+"/*=================================\u6807\u9898\u680f\u6837\u5f0f===================================*/\n"
+"/*=============================================================================*/\n"
 "\n"
 "#TitleWidget {\n"
 "    border-bottom: 1px solid rgb(235, 235, 235);\n"
@@ -38,15 +40,10 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#Title {\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
 "    font: 11pt;\n"
-"    border: none;\n"
 "    background-color: transparent;\n"
 "    color: rgb(60, 60, 60);\n"
-"}\n"
-"\n"
-"#Icon{\n"
-"	image: url(:/images/icon/icon.png);\n"
 "}\n"
 "\n"
 "#TitleWidget QPushButton {\n"
@@ -64,7 +61,10 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "\n"
-"/*================\u5de6\u4fa7\u6309\u94ae\u6837\u5f0f================*/\n"
+"/*=============================================================================*/\n"
+"/*=================================\u5de6\u4fa7"
+                        "\u6309\u94ae\u6837\u5f0f=================================*/\n"
+"/*=============================================================================*/\n"
 "\n"
 "#LeftWidget {\n"
 "    border-right: 1px solid rgb(235, 235, 235);\n"
@@ -72,8 +72,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#LeftWidget QPushButton {\n"
-"    background-colo"
-                        "r: transparent;\n"
+"    background-color: transparent;\n"
 "}\n"
 "\n"
 "#LeftWidget QPushButton:hover {\n"
@@ -86,45 +85,43 @@ class Ui_MainWindow(object):
 "    border-radius: 2px;\n"
 "}\n"
 "\n"
-"/*================\u4e3b\u9875\u6837\u5f0f================*/\n"
+"/*=============================================================================*/\n"
+"/*=================================\u4e3b\u9875\u6837\u5f0f=====================================*/\n"
+"/*=============================================================================*/\n"
 "\n"
 "#HomePage {\n"
 "    background-color: rgb(255, 246, 248);\n"
 "}\n"
 "\n"
-"#HomeLabel{\n"
-"	image: url(:/images/back_ground/home_bg.png);\n"
-"}\n"
-"\n"
-"#PathSetWidget{\n"
+"#PathSetWidget {\n"
 "    background-color: rgb(250, 245, 250);\n"
 "}\n"
 "\n"
-"#PathSetLabel{\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"	font-size: 12pt;\n"
-"	font-weight: bold;\n"
-"	color: rgb(60, 60, 60);\n"
+"#PathS"
+                        "etLabel {\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 12pt;\n"
+"    font-weight: bold;\n"
+"    color: rgb(60, 60, 60);\n"
 "}\n"
 "\n"
-"#PathSetTopWidget{\n"
+"#PathSetTopWidget {\n"
 "    background-color: rgb(250, 245, 250);\n"
-"	border-bottom: 1px solid rgb(235, 235, 235);\n"
+"    border-bottom: 1px solid rgb(235, 235, 235);\n"
 "}\n"
 "\n"
-"#CurrentGameLabel{\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"	font-size: 10pt;\n"
-"	color: dimgray;\n"
-"	border-radius: 2px;\n"
+"#CurrentGameLabel {\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 10pt;\n"
+"    color: dimgray;\n"
+"    border-radius: 2px;\n"
 "}\n"
 "\n"
 "#GameComboBox {\n"
-"	font-family: \"\u5fae"
-                        "\u8f6f\u96c5\u9ed1\";\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
 "    font: 10pt;\n"
 "    color: dimgray;\n"
-"	border-radius: 2px;\n"
+"    border-radius: 2px;\n"
 "    border: 1px solid gainsboro;\n"
 "    background-color: whitesmoke;\n"
 "}\n"
@@ -137,25 +134,25 @@ class Ui_MainWindow(object):
 "#GameComboBox QAbstractItemView {\n"
 "    color: dimgray;\n"
 "    background-color: whitesmoke;\n"
-"	border-radius: 2px;\n"
+"    border-radius: 2px;\n"
 "    outline: none;\n"
 "}\n"
 "\n"
 "#GameComboBox QAbstractItemView::item:hover {\n"
-"    background-color: lightgray;\n"
-"	border-radius: 2px;\n"
-"    color: dimgray; \n"
+"    background-col"
+                        "or: lightgray;\n"
+"    border-radius: 2px;\n"
+"    color: dimgray;\n"
 "}\n"
 "\n"
 "#GameComboBox QAbstractItemView::item:selected {\n"
 "    background-color: lightgray;\n"
-"	border-radius: 2px;\n"
+"    border-radius: 2px;\n"
 "    color: dimgray;\n"
 "}\n"
 "\n"
 "#PathSetWidget QPushButton {\n"
 "    background-color: rgb(235, 235, 235);\n"
-"	color: rgb(80, 80, 80);\n"
 "    border-radius: 2px;\n"
 "}\n"
 "\n"
@@ -164,38 +161,39 @@ class Ui_MainWindow(object):
 "    border-radius: 2px;\n"
 "}\n"
 "\n"
-"#PathSetWidget Q"
-                        "PushButton:pressed {\n"
+"#PathSetWidget QPushButton:pressed {\n"
 "    background-color: lightgray;\n"
 "    border-radius: 2px;\n"
 "}\n"
 "\n"
-"/*================\u5f00\u59cb\u9875\u6837\u5f0f================*/\n"
+"/*===============================================================================*/\n"
+"/*=================================\u5f00\u59cb\u9875\u6837\u5f0f=====================================*/\n"
+"/*===============================================================================*/\n"
 "\n"
 "#StartPage {\n"
 "    background-color: rgb(255, 246, 248);\n"
 "}\n"
 "\n"
-"#StartLabel {\n"
-"	image: url(:/images/back_ground/start_bg.png);\n"
-"}\n"
-"\n"
 "#StartPageScrollArea {\n"
 "    border: none;\n"
 "}\n"
-"#StartPageScrollWidget{\n"
+"\n"
+"#StartPageScroll"
+                        "Widget {\n"
 "    background: rgb(255, 246, 248);\n"
 "}\n"
+"\n"
 "#StartPageScrollArea QScrollBar:vertical {\n"
-"	width: 6px;\n"
-"	margin: 0px 0px 0px 0px;\n"
+"    width: 6px;\n"
+"    margin: 0px 0px 0px 0px;\n"
 "    border-radius: 2px;\n"
 "}\n"
+"\n"
 "#StartPageScrollArea QScrollBar::handle:vertical {\n"
 "    background: silver;\n"
 "    min-height: 20px;\n"
 "    border-radius: 2px;\n"
-"	width: 6px;\n"
+"    width: 6px;\n"
 "}\n"
 "\n"
 "#StartPageScrollArea QScrollBar::add-line:vertical {\n"
@@ -207,35 +205,36 @@ class Ui_MainWindow(object):
 "#StartPageScrollArea QScrollBar::sub-line:vertical {\n"
 "    background: transparent;\n"
 "    border: none;\n"
-"    height: 0px"
-                        ";\n"
+"    height: 0px;\n"
 "}\n"
 "\n"
 "#StartPageScrollArea QScrollBar::up-arrow:vertical,\n"
-"#StartPageScrollArea QScrollBar::down-arrow:vertical { \n"
+"#StartPageScrollArea QScrollBar::down-arrow:vertical {\n"
 "    border: none;\n"
 "    background: none;\n"
 "}\n"
 "\n"
 "#FunctionWidget {\n"
 "    background: rgb(255, 246, 248);\n"
-"	border-bottom: 1px solid rgb(235, 235, 235)\n"
+"    border-bottom: 1px solid rgb(235, 235, 235)\n"
 "}\n"
 "\n"
-"#FunctionTitleLabel{\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"	font-size: 12pt;\n"
-"	font-weight: bold;\n"
-"	color: rgb(60, 60, 60);\n"
+"#FunctionTitleLabel {\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1"
+                        "\";\n"
+"    font-size: 12pt;\n"
+"    font-weight: bold;\n"
+"    color: rgb(60, 60, 60);\n"
 "}\n"
 "\n"
 "#FunctionWidget QPushButton {\n"
 "    background-color: transparent;\n"
 "    border-radius: 2px;\n"
 "}\n"
+"\n"
 "#FunctionWidget QPushButton#ButtonEditFolder:checked {\n"
 "    background-color: rgb(220, 220, 220);\n"
-"	border-radius: 2px;\n"
+"    border-radius: 2px;\n"
 "}\n"
 "\n"
 "#FunctionWidget QPushButton:hover {\n"
@@ -248,26 +247,26 @@ class Ui_MainWindow(object):
 "    border-radius: 2px;\n"
 "}\n"
 "\n"
-"#FolderWidget{\n"
+"#FolderWidget {\n"
 "    background-color: rgb(255, 246, 248);\n"
 "}\n"
-""
-                        "\n"
-"#BottomWidget{\n"
+"\n"
+"#BottomWidget {\n"
 "    background-color: rgb(240, 240, 245);\n"
-"	border-top: 1px solid rgb(235, 235, 235);\n"
+"    border-top: 1px solid rgb(235, 235, 235);\n"
 "}\n"
 "\n"
 "#ButtonPlay {\n"
 "    background-color: rgb(255, 99, 134);\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"	font-size: 11pt;\n"
-"	font-weight: bold;\n"
-"	color: white;\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 11pt;\n"
+"    font-weight: bold;\n"
+"    color: white;\n"
 "    border-radius: 2px;\n"
 "}\n"
 "\n"
-"#ButtonPlay:hover {\n"
+"#"
+                        "ButtonPlay:hover {\n"
 "    background-color: rgb(240, 90, 125);\n"
 "    border-radius: 2px;\n"
 "}\n"
@@ -277,36 +276,41 @@ class Ui_MainWindow(object):
 "    border-radius: 2px;\n"
 "}\n"
 "\n"
-"/*================\u5173\u4e8e\u9875\u6837\u5f0f================*/\n"
+"/*===============================================================================*/\n"
+"/*=================================\u5173\u4e8e\u9875\u6837\u5f0f=====================================*/\n"
+"/*===============================================================================*/\n"
 "\n"
-"#AboutPage { \n"
+"#AboutPage {\n"
 "    background-color: rgb(255, 246, 248);\n"
 "}\n"
 "\n"
-"#AboutPageTitle{\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"	font-size: 12pt;\n"
-"	font-weight: bold;\n"
-"	color: rgb(60, 60, 60);\n"
+"#AboutPageTitle {\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 12pt;\n"
+"    font-weight: bold;\n"
+"    color: rgb(60, 60, 60);\n"
 "}\n"
 "\n"
 "#AboutPageScrollArea {\n"
 "    border: none;\n"
 "}\n"
-"#AboutPageScrollWidget{\n"
+"\n"
+"#AboutPageScrollWidget {\n"
 "    background: rgb(255, 246, 248);\n"
 "}\n"
-"#AboutPageScrollArea QScrollB"
-                        "ar:vertical {\n"
-"	width: 6px;\n"
-"	margin: 0px 0px 0px 0px;\n"
+"\n"
+"#AboutPageScrollArea QScrollBar:vertical {\n"
+"    width: 6px;\n"
+"    margin: 0px 0px 0px 0px;\n"
 "    border-radius: 2px;\n"
 "}\n"
-"#AboutPageScrollArea QScrollBar::handle:vertical {\n"
+"\n"
+""
+                        "#AboutPageScrollArea QScrollBar::handle:vertical {\n"
 "    background: silver;\n"
 "    min-height: 20px;\n"
 "    border-radius: 2px;\n"
-"	width: 6px;\n"
+"    width: 6px;\n"
 "}\n"
 "\n"
 "#AboutPageScrollArea QScrollBar::add-line:vertical {\n"
@@ -322,60 +326,52 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "#AboutPageScrollArea QScrollBar::up-arrow:vertical,\n"
-"#AboutPageScrollArea QScrollBar::down-arrow:vertical { \n"
+"#AboutPageScrollArea QScrollBar::down-arrow:vertical {\n"
 "    border: none;\n"
 "    background: none;\n"
 "}\n"
 "\n"
-"#SoftwareInfoWidget{\n"
+"#SoftwareInfoWidget {\n"
 "    background-color: rgb(255, 246, 248);\n"
 "}\n"
 "\n"
-"#SoftwareInfoTitle{\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"	font-size: 11pt;\n"
-"	font-weight: bold;\n"
-"	color: rgb(80, 80, 80);\n"
+"#SoftwareInfoTitle {\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 11pt;\n"
+"    font-weight: bold;\n"
+"    color: rgb(80, 80, 80);\n"
 "}\n"
 "\n"
-"#SoftwarePic{\n"
-"	image: url(:/images/icon/icon.png);\n"
-""
-                        "}\n"
-"\n"
-"#SoftwareName{\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"	font-size: 9pt;\n"
-"	font-weight: bold;\n"
-"	color: rgb(80, 80, 80);\n"
+"#SoftwareName {\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 9pt;\n"
+"    font-weight: bold;\n"
+"    color: rgb(80, "
+                        "80, 80);\n"
 "}\n"
 "\n"
-"#SoftwareVersion{\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"	font-size: 9pt;\n"
-"	color: dimgray;\n"
+"#SoftwareVersion {\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 9pt;\n"
+"    color: dimgray;\n"
 "}\n"
 "\n"
-"#DeveloperPic{\n"
-"	image: url(:/images/icon/touxiang.png);\n"
+"#DeveloperName {\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 9pt;\n"
+"    font-weight: bold;\n"
+"    color: rgb(80, 80, 80);\n"
 "}\n"
 "\n"
-"#DeveloperName{\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"	font-size: 9pt;\n"
-"	font-weight: bold;\n"
-"	color: rgb(80, 80, 80);\n"
-"}\n"
-"\n"
-"#DeveloperInfo{\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"	font-size: 9pt;\n"
-"	color: dimgray;\n"
+"#DeveloperInfo {\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 9pt;\n"
+"    color: dimgray;\n"
 "}\n"
 "\n"
 "#SoftwareInfoWidget QPushButton {\n"
 "    background-color: rgb(235, 235, 235);\n"
-"	color: rgb(80, 80, 80);\n"
+"    color: rgb(80, 80, 80);\n"
 "    border-radius: 2px;\n"
 "}\n"
 "\n"
@@ -388,21 +384,145 @@ class Ui_MainWindow(object):
 "    background-color: lightgray;\n"
 "    border-radius: 2px;\n"
 "}\n"
-"#"
-                        "CopyrightLabel{\n"
-"	font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
-"	font-size: 9pt;\n"
-"	color: dimgray\n"
+"\n"
+"#CopyrightLabel {\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 9pt;\n"
+"    color: dimgray\n"
 "}\n"
 "\n"
-"/*=============================*/\n"
+"/*========================================="
+                        "======================================*/\n"
+"/*================================message\u6837\u5f0f====================================*/\n"
+"/*===============================================================================*/\n"
 "\n"
-"QToolTip {\n"
-"    font: 10pt;\n"
-"    background-color: whitesmoke;\n"
-"    color: dimgray;\n"
+"#DefaultWidget {\n"
+"    border-bottom: 1px solid rgb(235, 235, 235);\n"
+"    background-color: rgb(250, 245, 245);\n"
+"}\n"
+"\n"
+"#ButtonCancel {\n"
+"    background-color: rgb(235, 235, 235);\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 10pt;\n"
+"    color: rgb(80, 80, 80);\n"
 "    border-radius: 2px;\n"
-"    border: 1px solid lightgray;  \n"
+"}\n"
+"\n"
+"#ButtonCancel:hover {\n"
+"    background-color: gainsboro;\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#ButtonCancel:pressed {\n"
+"    background-color: lightgray;\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#ButtonOk {\n"
+"    background-color: rgb(208, 178, 224);\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 10pt;\n"
+"    color: rgb(255, 255, 255);\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#ButtonOk:hover {\n"
+"    bac"
+                        "kground-color: rgb(197, 172, 227);\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#ButtonOk:pressed {\n"
+"    background-color: rgb(181, 164, 232);\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"/*===============================================================================*/\n"
+"/*================================filedialog\u6837\u5f0f=================================*/\n"
+"/*===============================================================================*/\n"
+"\n"
+"#DialogWidget {\n"
+"    background-color: rgb(255, 246, 248);\n"
+"}\n"
+"\n"
+"#ButtonChooseFolder {\n"
+"    background-color: rgb(235, 235, 235);\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 10pt;\n"
+"    color: rgb(80, 80, 80);\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#ButtonChooseFolder:hover {\n"
+"    background-color: gainsboro;\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#ButtonChooseFolder:pressed {\n"
+"    background-color: lightgray;\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#PathLineEdit {\n"
+"    font-family: \"\u5fae\u8f6f"
+                        "\u96c5\u9ed1\";\n"
+"    font: 10pt;\n"
+"    border: 1px solid gainsboro;\n"
+"    border-radius: 2px;\n"
+"    background-color: transparent;\n"
+"    color: dimgray;\n"
+"}\n"
+"\n"
+"#NameLineEdit {\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font: 10pt;\n"
+"    border: 1px solid gainsboro;\n"
+"    border-radius: 2px;\n"
+"    background-color: transparent;\n"
+"    color: dimgray;\n"
+"}\n"
+"\n"
+"#DefaultWidget {\n"
+"    border-bottom: 1px solid rgb(235, 235, 235);\n"
+"    background-color: rgb(250, 245, 245);\n"
+"}\n"
+"\n"
+"#ButtonCancel {\n"
+"    background-color: rgb(235, 235, 235);\n"
+"    font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 10pt;\n"
+"    color: rgb(80, 80, 80);\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#ButtonCancel:hover {\n"
+"    background-color: gainsboro;\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#ButtonCancel:pressed {\n"
+"    background-color: lightgray;\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#ButtonOk {\n"
+"    background-color: rgb(208, 178, 224);\n"
+"    "
+                        "font-family: \"\u5fae\u8f6f\u96c5\u9ed1\";\n"
+"    font-size: 10pt;\n"
+"    color: rgb(255, 255, 255);\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#ButtonOk:hover {\n"
+"    background-color: rgb(197, 172, 227);\n"
+"    border-radius: 2px;\n"
+"}\n"
+"\n"
+"#ButtonOk:pressed {\n"
+"    background-color: rgb(181, 164, 232);\n"
+"    border-radius: 2px;\n"
 "}\n"
 "")
         self.verticalLayout = QVBoxLayout(self.StyleSheet)
@@ -421,6 +541,8 @@ class Ui_MainWindow(object):
         self.Icon.setObjectName(u"Icon")
         self.Icon.setMinimumSize(QSize(32, 32))
         self.Icon.setMaximumSize(QSize(32, 32))
+        self.Icon.setPixmap(QPixmap(u":/images/icon/icon.png"))
+        self.Icon.setScaledContents(True)
 
         self.hboxLayout.addWidget(self.Icon)
 
@@ -505,19 +627,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addItem(self.verticalSpacer)
 
-        self.ButtonTheme = QPushButton(self.LeftWidget)
-        self.ButtonTheme.setObjectName(u"ButtonTheme")
-        self.ButtonTheme.setMinimumSize(QSize(42, 42))
-        self.ButtonTheme.setMaximumSize(QSize(42, 42))
-        icon5 = QIcon()
-        icon5.addFile(u":/btn/left_widget/dark_theme.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        icon5.addFile(u":/btn/left_widget/light_theme.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
-        self.ButtonTheme.setIcon(icon5)
-        self.ButtonTheme.setIconSize(QSize(24, 24))
-        self.ButtonTheme.setCheckable(True)
-
-        self.verticalLayout_2.addWidget(self.ButtonTheme)
-
 
         self.horizontalLayout.addWidget(self.LeftWidget)
 
@@ -533,6 +642,8 @@ class Ui_MainWindow(object):
         self.HomeLabel.setObjectName(u"HomeLabel")
         self.HomeLabel.setMinimumSize(QSize(964, 400))
         self.HomeLabel.setMaximumSize(QSize(16777215, 400))
+        self.HomeLabel.setPixmap(QPixmap(u":/images/back_ground/home_bg.png"))
+        self.HomeLabel.setScaledContents(True)
 
         self.verticalLayout_3.addWidget(self.HomeLabel)
 
@@ -543,9 +654,9 @@ class Ui_MainWindow(object):
         self.ButtonPathSet.setGeometry(QRect(850, 90, 32, 32))
         self.ButtonPathSet.setMinimumSize(QSize(32, 32))
         self.ButtonPathSet.setMaximumSize(QSize(32, 32))
-        icon6 = QIcon()
-        icon6.addFile(u":/btn/main_widget/increase.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ButtonPathSet.setIcon(icon6)
+        icon5 = QIcon()
+        icon5.addFile(u":/btn/main_widget/increase.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonPathSet.setIcon(icon5)
         self.ButtonPathSet.setIconSize(QSize(24, 24))
         self.PathSetTopWidget = QWidget(self.PathSetWidget)
         self.PathSetTopWidget.setObjectName(u"PathSetTopWidget")
@@ -565,9 +676,9 @@ class Ui_MainWindow(object):
         self.ButtonNext.setObjectName(u"ButtonNext")
         self.ButtonNext.setMinimumSize(QSize(32, 32))
         self.ButtonNext.setMaximumSize(QSize(32, 32))
-        icon7 = QIcon()
-        icon7.addFile(u":/btn/main_widget/next.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ButtonNext.setIcon(icon7)
+        icon6 = QIcon()
+        icon6.addFile(u":/btn/main_widget/next.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonNext.setIcon(icon6)
 
         self.horizontalLayout_3.addWidget(self.ButtonNext)
 
@@ -576,9 +687,9 @@ class Ui_MainWindow(object):
         self.ButtonRemoveGame.setGeometry(QRect(890, 90, 32, 32))
         self.ButtonRemoveGame.setMinimumSize(QSize(32, 32))
         self.ButtonRemoveGame.setMaximumSize(QSize(32, 32))
-        icon8 = QIcon()
-        icon8.addFile(u":/btn/main_widget/clear.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ButtonRemoveGame.setIcon(icon8)
+        icon7 = QIcon()
+        icon7.addFile(u":/btn/main_widget/clear.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonRemoveGame.setIcon(icon7)
         self.ButtonRemoveGame.setIconSize(QSize(24, 24))
         self.CurrentGameLabel = QLabel(self.PathSetWidget)
         self.CurrentGameLabel.setObjectName(u"CurrentGameLabel")
@@ -607,7 +718,7 @@ class Ui_MainWindow(object):
         self.StartPageScrollArea.setWidgetResizable(True)
         self.StartPageScrollWidget = QWidget()
         self.StartPageScrollWidget.setObjectName(u"StartPageScrollWidget")
-        self.StartPageScrollWidget.setGeometry(QRect(0, 0, 964, 616))
+        self.StartPageScrollWidget.setGeometry(QRect(0, 0, 958, 616))
         self.StartPageScrollWidget.setMinimumSize(QSize(0, 0))
         self.verticalLayout_5 = QVBoxLayout(self.StartPageScrollWidget)
         self.verticalLayout_5.setSpacing(0)
@@ -617,6 +728,8 @@ class Ui_MainWindow(object):
         self.StartLabel.setObjectName(u"StartLabel")
         self.StartLabel.setMinimumSize(QSize(958, 398))
         self.StartLabel.setMaximumSize(QSize(958, 398))
+        self.StartLabel.setPixmap(QPixmap(u":/images/back_ground/start_bg.png"))
+        self.StartLabel.setScaledContents(True)
 
         self.verticalLayout_5.addWidget(self.StartLabel)
 
@@ -636,7 +749,7 @@ class Ui_MainWindow(object):
         self.ButtonAddFolder.setObjectName(u"ButtonAddFolder")
         self.ButtonAddFolder.setMinimumSize(QSize(32, 32))
         self.ButtonAddFolder.setMaximumSize(QSize(32, 32))
-        self.ButtonAddFolder.setIcon(icon6)
+        self.ButtonAddFolder.setIcon(icon5)
         self.ButtonAddFolder.setIconSize(QSize(24, 24))
 
         self.gridLayout.addWidget(self.ButtonAddFolder, 0, 4, 1, 1)
@@ -645,10 +758,10 @@ class Ui_MainWindow(object):
         self.ButtonSelectAll.setObjectName(u"ButtonSelectAll")
         self.ButtonSelectAll.setMinimumSize(QSize(32, 32))
         self.ButtonSelectAll.setMaximumSize(QSize(32, 32))
-        icon9 = QIcon()
-        icon9.addFile(u":/btn/main_widget/select.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        icon9.addFile(u":/btn/main_widget/unselect.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
-        self.ButtonSelectAll.setIcon(icon9)
+        icon8 = QIcon()
+        icon8.addFile(u":/btn/main_widget/select.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon8.addFile(u":/btn/main_widget/unselect.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
+        self.ButtonSelectAll.setIcon(icon8)
         self.ButtonSelectAll.setIconSize(QSize(24, 24))
         self.ButtonSelectAll.setCheckable(True)
         self.ButtonSelectAll.setChecked(True)
@@ -659,7 +772,7 @@ class Ui_MainWindow(object):
         self.ButtonDelFolder.setObjectName(u"ButtonDelFolder")
         self.ButtonDelFolder.setMinimumSize(QSize(32, 32))
         self.ButtonDelFolder.setMaximumSize(QSize(32, 32))
-        self.ButtonDelFolder.setIcon(icon8)
+        self.ButtonDelFolder.setIcon(icon7)
         self.ButtonDelFolder.setIconSize(QSize(24, 24))
 
         self.gridLayout.addWidget(self.ButtonDelFolder, 0, 2, 1, 1)
@@ -668,10 +781,10 @@ class Ui_MainWindow(object):
         self.ButtonEditFolder.setObjectName(u"ButtonEditFolder")
         self.ButtonEditFolder.setMinimumSize(QSize(32, 32))
         self.ButtonEditFolder.setMaximumSize(QSize(32, 32))
-        icon10 = QIcon()
-        icon10.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        icon10.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
-        self.ButtonEditFolder.setIcon(icon10)
+        icon9 = QIcon()
+        icon9.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon9.addFile(u":/btn/main_widget/edit.png", QSize(), QIcon.Mode.Normal, QIcon.State.On)
+        self.ButtonEditFolder.setIcon(icon9)
         self.ButtonEditFolder.setIconSize(QSize(24, 24))
         self.ButtonEditFolder.setCheckable(True)
 
@@ -738,7 +851,7 @@ class Ui_MainWindow(object):
         self.AboutPageScrollArea.setWidgetResizable(True)
         self.AboutPageScrollWidget = QWidget()
         self.AboutPageScrollWidget.setObjectName(u"AboutPageScrollWidget")
-        self.AboutPageScrollWidget.setGeometry(QRect(0, 0, 964, 680))
+        self.AboutPageScrollWidget.setGeometry(QRect(0, 0, 958, 680))
         self.verticalLayout_7 = QVBoxLayout(self.AboutPageScrollWidget)
         self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
@@ -757,6 +870,8 @@ class Ui_MainWindow(object):
         self.SoftwarePic.setGeometry(QRect(30, 110, 64, 64))
         self.SoftwarePic.setMinimumSize(QSize(64, 64))
         self.SoftwarePic.setMaximumSize(QSize(64, 64))
+        self.SoftwarePic.setPixmap(QPixmap(u":/images/icon/icon.png"))
+        self.SoftwarePic.setScaledContents(True)
         self.SoftwareName = QLabel(self.SoftwareInfoWidget)
         self.SoftwareName.setObjectName(u"SoftwareName")
         self.SoftwareName.setGeometry(QRect(100, 110, 125, 32))
@@ -772,6 +887,8 @@ class Ui_MainWindow(object):
         self.DeveloperPic.setGeometry(QRect(300, 110, 64, 64))
         self.DeveloperPic.setMinimumSize(QSize(64, 64))
         self.DeveloperPic.setMaximumSize(QSize(64, 64))
+        self.DeveloperPic.setPixmap(QPixmap(u":/images/icon/touxiang.png"))
+        self.DeveloperPic.setScaledContents(True)
         self.DeveloperName = QLabel(self.SoftwareInfoWidget)
         self.DeveloperName.setObjectName(u"DeveloperName")
         self.DeveloperName.setGeometry(QRect(370, 110, 125, 32))
@@ -787,27 +904,27 @@ class Ui_MainWindow(object):
         self.ButtonGitHub.setGeometry(QRect(290, 200, 151, 32))
         self.ButtonGitHub.setMinimumSize(QSize(120, 32))
         self.ButtonGitHub.setMaximumSize(QSize(16777215, 32))
-        icon11 = QIcon()
-        icon11.addFile(u":/btn/main_widget/github.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ButtonGitHub.setIcon(icon11)
+        icon10 = QIcon()
+        icon10.addFile(u":/btn/main_widget/github.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonGitHub.setIcon(icon10)
         self.ButtonGitHub.setIconSize(QSize(24, 24))
         self.ButtonCheckUpdate = QPushButton(self.SoftwareInfoWidget)
         self.ButtonCheckUpdate.setObjectName(u"ButtonCheckUpdate")
         self.ButtonCheckUpdate.setGeometry(QRect(30, 200, 100, 32))
         self.ButtonCheckUpdate.setMinimumSize(QSize(100, 32))
         self.ButtonCheckUpdate.setMaximumSize(QSize(16777215, 32))
-        icon12 = QIcon()
-        icon12.addFile(u":/btn/main_widget/cheak_update.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ButtonCheckUpdate.setIcon(icon12)
+        icon11 = QIcon()
+        icon11.addFile(u":/btn/main_widget/cheak_update.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonCheckUpdate.setIcon(icon11)
         self.ButtonCheckUpdate.setIconSize(QSize(24, 24))
         self.ButtonRemoveUerdata = QPushButton(self.SoftwareInfoWidget)
         self.ButtonRemoveUerdata.setObjectName(u"ButtonRemoveUerdata")
         self.ButtonRemoveUerdata.setGeometry(QRect(160, 200, 100, 32))
         self.ButtonRemoveUerdata.setMinimumSize(QSize(100, 32))
         self.ButtonRemoveUerdata.setMaximumSize(QSize(16777215, 32))
-        icon13 = QIcon()
-        icon13.addFile(u":/btn/main_widget/Clear_1.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.ButtonRemoveUerdata.setIcon(icon13)
+        icon12 = QIcon()
+        icon12.addFile(u":/btn/main_widget/Clear_1.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.ButtonRemoveUerdata.setIcon(icon12)
         self.ButtonRemoveUerdata.setIconSize(QSize(24, 24))
         self.CopyrightLabel = QLabel(self.SoftwareInfoWidget)
         self.CopyrightLabel.setObjectName(u"CopyrightLabel")
@@ -837,7 +954,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.StackedWidget.setCurrentIndex(1)
+        self.StackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -859,9 +976,6 @@ class Ui_MainWindow(object):
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(tooltip)
         self.ButtonAbout.setToolTip(QCoreApplication.translate("MainWindow", u"\u5173\u4e8e", None))
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(tooltip)
-        self.ButtonTheme.setToolTip(QCoreApplication.translate("MainWindow", u"\u5207\u6362\u4e3b\u9898", None))
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(tooltip)
         self.ButtonPathSet.setToolTip(QCoreApplication.translate("MainWindow", u"\u9009\u62e9\u6587\u4ef6\u5939", None))
@@ -898,7 +1012,7 @@ class Ui_MainWindow(object):
         self.SoftwareInfoTitle.setText(QCoreApplication.translate("MainWindow", u"\u8f6f\u4ef6\u4fe1\u606f", None))
         self.SoftwarePic.setText("")
         self.SoftwareName.setText(QCoreApplication.translate("MainWindow", u"GameLauncher", None))
-        self.SoftwareVersion.setText(QCoreApplication.translate("MainWindow", u"Version\uff1a1.0.0b", None))
+        self.SoftwareVersion.setText(QCoreApplication.translate("MainWindow", u"Version\uff1a1.0.0", None))
         self.DeveloperPic.setText("")
         self.DeveloperName.setText(QCoreApplication.translate("MainWindow", u"ichinoseyuu", None))
         self.DeveloperInfo.setText(QCoreApplication.translate("MainWindow", u"GameLauncher\u7684\u5f00\u53d1\u8005", None))

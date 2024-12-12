@@ -140,6 +140,13 @@ class Ui_Dialog(object):
 "#ButtonOk:pressed {\n"
 "    background-color: rgb(181, 164, 232);\n"
 "    border-radius: 2px;\n"
+"}\n"
+"QToolTip {\n"
+"    font: 10pt;\n"
+"    background-color: whitesmoke;\n"
+"    color: dimgray;\n"
+"    border-radius: 2px;\n"
+"    border: 1px solid lightgray;\n"
 "}")
         self.verticalLayout = QVBoxLayout(self.StyleSheet)
         self.verticalLayout.setSpacing(0)

@@ -23,14 +23,14 @@ class Ui_DynamicTip(object):
         if not DynamicTip.objectName():
             DynamicTip.setObjectName(u"DynamicTip")
         DynamicTip.resize(200, 60)
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(DynamicTip.sizePolicy().hasHeightForWidth())
         DynamicTip.setSizePolicy(sizePolicy)
         DynamicTip.setMinimumSize(QSize(200, 60))
         DynamicTip.setStyleSheet(u"#TipBoard {\n"
-"    border: 1px solid rgb(235, 235, 235);\n"
+"    border: 1px solid lightgray;\n"
 "    background-color: rgb(250, 245, 245);\n"
 "    border-radius: 4px;\n"
 "}\n"
@@ -44,6 +44,7 @@ class Ui_DynamicTip(object):
 "}")
         self.verticalLayout = QVBoxLayout(DynamicTip)
         self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(9, 9, 9, 9)
         self.TipBoard = QWidget(DynamicTip)
         self.TipBoard.setObjectName(u"TipBoard")
         self.verticalLayout_2 = QVBoxLayout(self.TipBoard)

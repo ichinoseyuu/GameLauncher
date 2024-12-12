@@ -145,6 +145,13 @@
 #ButtonOk:pressed {
     background-color: rgb(181, 164, 232);
     border-radius: 2px;
+}
+QToolTip {
+    font: 10pt;
+    background-color: whitesmoke;
+    color: dimgray;
+    border-radius: 2px;
+    border: 1px solid lightgray;
 }</string>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">

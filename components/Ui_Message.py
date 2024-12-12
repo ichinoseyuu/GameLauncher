@@ -24,14 +24,14 @@ class Ui_Message(object):
     def setupUi(self, Message):
         if not Message.objectName():
             Message.setObjectName(u"Message")
-        Message.resize(418, 318)
-        Message.setMinimumSize(QSize(418, 318))
-        self.StyleSheet = QWidget(Message)
-        self.StyleSheet.setObjectName(u"StyleSheet")
-        self.StyleSheet.setGeometry(QRect(0, 0, 418, 318))
-        self.StyleSheet.setMinimumSize(QSize(418, 318))
-        self.StyleSheet.setMaximumSize(QSize(418, 318))
-        self.StyleSheet.setStyleSheet(u"#TitleWidget {\n"
+        Message.resize(318, 228)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(Message.sizePolicy().hasHeightForWidth())
+        Message.setSizePolicy(sizePolicy)
+        Message.setMinimumSize(QSize(318, 0))
+        Message.setStyleSheet(u"#TitleWidget {\n"
 "    border-bottom: 1px solid rgb(235, 235, 235);\n"
 "    background-color: rgb(250, 245, 245);\n"
 "}\n"
@@ -112,15 +112,22 @@ class Ui_Message(object):
 "#ButtonOk:pressed {\n"
 "    background-color: rgb(181, 164, 232);\n"
 "    border-radius: 2px;\n"
+"}\n"
+"QToolTip {\n"
+"    font: 10pt;\n"
+"    background-color: whitesmoke;\n"
+"    color: dimgray;\n"
+"    border-radius: 2px;\n"
+"    border"
+                        ": 1px solid lightgray;\n"
 "}")
-        self.verticalLayout = QVBoxLayout(self.StyleSheet)
-        self.verticalLayout.setSpacing(0)
-        self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(9, 9, 9, 9)
-        self.TitleWidget = QWidget(self.StyleSheet)
+        self.verticalLayout_3 = QVBoxLayout(Message)
+        self.verticalLayout_3.setSpacing(0)
+        self.verticalLayout_3.setObjectName(u"verticalLayout_3")
+        self.TitleWidget = QWidget(Message)
         self.TitleWidget.setObjectName(u"TitleWidget")
-        self.TitleWidget.setMinimumSize(QSize(400, 40))
-        self.TitleWidget.setMaximumSize(QSize(400, 40))
+        self.TitleWidget.setMinimumSize(QSize(300, 40))
+        self.TitleWidget.setMaximumSize(QSize(16777215, 40))
         self.horizontalLayout = QHBoxLayout(self.TitleWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.Title = QLabel(self.TitleWidget)
@@ -144,10 +151,11 @@ class Ui_Message(object):
         self.horizontalLayout.addWidget(self.ButtonExit)
 
 
-        self.verticalLayout.addWidget(self.TitleWidget)
+        self.verticalLayout_3.addWidget(self.TitleWidget)
 
-        self.MessageWidget = QWidget(self.StyleSheet)
+        self.MessageWidget = QWidget(Message)
         self.MessageWidget.setObjectName(u"MessageWidget")
+        self.MessageWidget.setMinimumSize(QSize(300, 120))
         self.MessageWidget.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
         self.verticalLayout_2 = QVBoxLayout(self.MessageWidget)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
@@ -158,12 +166,12 @@ class Ui_Message(object):
         self.verticalLayout_2.addWidget(self.MessageLabel)
 
 
-        self.verticalLayout.addWidget(self.MessageWidget)
+        self.verticalLayout_3.addWidget(self.MessageWidget)
 
-        self.DefaultWidget = QWidget(self.StyleSheet)
+        self.DefaultWidget = QWidget(Message)
         self.DefaultWidget.setObjectName(u"DefaultWidget")
-        self.DefaultWidget.setMinimumSize(QSize(400, 50))
-        self.DefaultWidget.setMaximumSize(QSize(400, 50))
+        self.DefaultWidget.setMinimumSize(QSize(300, 50))
+        self.DefaultWidget.setMaximumSize(QSize(16777215, 50))
         self.horizontalLayout_2 = QHBoxLayout(self.DefaultWidget)
         self.horizontalLayout_2.setSpacing(15)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
@@ -187,7 +195,7 @@ class Ui_Message(object):
         self.horizontalLayout_2.addWidget(self.ButtonCancel)
 
 
-        self.verticalLayout.addWidget(self.DefaultWidget)
+        self.verticalLayout_3.addWidget(self.DefaultWidget)
 
 
         self.retranslateUi(Message)

@@ -62,50 +62,6 @@ class UserData():
         #endregion
 
 
-    def saveFolder(game: str, folders: dict):
-        """_summary_ 保存文件夹
-
-        Args:
-            game (str): _description_ 游戏名称
-            folders (dict): _description_ 文件夹数据
-        """
-        #region 保存文件夹
-        for cood, data in folders.items():
-            UserData.games[game]['folders'].update({
-                data['name']:{
-                    'cood': {
-                        'row': cood[0],
-                        'col': cood[1]
-                    },
-                    'path': data['path']
-                }
-            })
-        #endregion
-
-
-    def addFolder(game: str,folderName: str, path: str, row: int, col: int):
-        """_summary_ 添加文件夹
-
-        Args:
-            game (str): _description_ 游戏名称
-            folderName (str): _description_ 文件夹名称
-            path (str): _description_ 文件夹路径
-            row (int): _description_ 行号
-            col (int): _description_ 列号
-        """
-        #region 添加文件夹
-        UserData.games[game]['folders'].update({
-            folderName:{
-                'cood': {
-                    'row': row,
-                    'col': col
-                },
-                'path': path
-            }
-        })
-        #endregion
-
-
     def isNewGame(game: str):
         """_summary_ 判断是否是新游戏
 
@@ -124,12 +80,9 @@ class ButtonManager():
         ObjKey = 'obj'
         PathKey = 'path'
 
+    buttons = {}
 
-    def __init__(self):
-        self.buttons = {}
-
-
-    def getAllBtns(self):
+    def getAllBtns():
         """_summary_ 获取所有按钮
 
         Returns:
@@ -138,38 +91,38 @@ class ButtonManager():
         #region 获取所有按钮
         #.values()只获取键值，不获取键，返回一个list
         #.items()获取键值对，返回一个dict
-        key = self.Keys.ObjKey
-        return [value[key] for value in self.buttons.values()]
+        key = ButtonManager.Keys.ObjKey
+        return [value[key] for value in ButtonManager.buttons.values()]
         #endregion
 
 
-    def getSelectedBtnsWithCood(self) -> dict:
+    def getSelectedBtnsWithCood() -> dict:
         """_summary_ 获取选中的按钮和坐标
 
         Returns:
             dict: _description_ 返回一个字典，键是坐标，值是按钮
         """
         #region 获取选中的按钮和坐标
-        key = self.Keys.ObjKey
+        key = ButtonManager.Keys.ObjKey
         data = {}
-        for cood, item in self.buttons.items():
+        for cood, item in ButtonManager.buttons.items():
             if key in item and item[key].isChecked():
                 data.update({cood: item[key]})
         return data
         #endregion
 
 
-    def getSelectedCoodAndBtn(self):
+    def getSelectedCoodAndBtn():
         """_summary_ 获取选中的按钮和坐标
 
         Returns:
             _type_: _description_ 返回一个元组，第一个元素是坐标，第二个元素是按钮
         """
         #region 获取选中的按钮和坐标
-        key = self.Keys.ObjKey
+        key = ButtonManager.Keys.ObjKey
         btns = []
         coods = []
-        for cood, item in self.buttons.items():
+        for cood, item in ButtonManager.buttons.items():
             if key in item and item[key].isChecked():
                 btns.append(item[key])
                 coods.append(cood)
@@ -177,23 +130,23 @@ class ButtonManager():
         #endregion
 
 
-    def getSelectedBtns(self) -> list:
+    def getSelectedBtns() -> list:
         """_summary_ 获取选中的按钮
 
         Returns:
             list: _description_ 选中的按钮
         """        
         #region 获取选中的按钮
-        key = self.Keys.ObjKey
+        key = ButtonManager.Keys.ObjKey
         btns = []
-        for value in self.buttons.values():
+        for value in ButtonManager.buttons.values():
             if key in value and value[key].isChecked():
                 btns.append(value[key])
         return btns
         #endregion
 
 
-    def delSelectedBtn(self, btn, colLimit):
+    def delSelectedBtn(btn, colLimit):
         """_summary_ 删除一个按钮
 
         Args:
@@ -201,35 +154,36 @@ class ButtonManager():
             colLimit (_type_): _description_ 每行按钮的数量
         """      
         #region 删除选中的按钮
-        key = self.Keys.ObjKey
+        key = ButtonManager.Keys.ObjKey
         # 查找并删除对应的按钮
-        for cood, value in list(self.buttons.items()):  # 使用 list() 来避免修改字典时出错
+        for cood, value in list(ButtonManager.buttons.items()):  # 使用 list() 来避免修改字典时出错
             if key in value and value[key] == btn:
                 value[key].deleteLater()# 删除按钮的GUI对象
-                del self.buttons[cood]    # 删除字典中的该键值对       
+                del ButtonManager.buttons[cood]    # 删除字典中的该键值对       
         newButtons = {}
         # 遍历字典的剩余元素，重新编号键
-        for i, (cood, item) in enumerate(self.buttons.items()):
+        for i, (cood, item) in enumerate(ButtonManager.buttons.items()):
             # 重新生成键，按顺序重新编号为 (i // colCount, i % colCount) 的形式
             newKey = (i // colLimit, i % colLimit)
             newButtons[newKey] = item
-        self.buttons = newButtons
+        ButtonManager.buttons = newButtons
+        print(ButtonManager.buttons)
         #endregion
 
 
-    def removeAllBtns(self):
+    def removeAllBtns():
         """_summary_ 去除所有按钮的显示
         """
         #region 去除所有按钮的显示
-        key = self.Keys.ObjKey
-        btns = [value[key] for value in self.buttons.values()]
+        key = ButtonManager.Keys.ObjKey
+        btns = [value[key] for value in ButtonManager.buttons.values()]
         for btn in btns:
             btn.deleteLater()# 删除按钮的GUI对象
-        self.buttons.clear()    # 清空字典
+        ButtonManager.buttons.clear()    # 清空字典
         #endregion
 
 
-    def delSelectedBtns(self, btns: list, colLimit: int):
+    def delSelectedBtns(btns: list, colLimit: int):
         """_summary_ 删除多个按钮
 
         Args:
@@ -237,25 +191,25 @@ class ButtonManager():
             colLimit (int): _description_ 每行按钮的数量
         """     
         #region 删除选中的按钮
-        key = self.Keys.ObjKey
+        key = ButtonManager.Keys.ObjKey
         for btn in btns:
             # 查找并删除对应的按钮
-            for cood, value in list(self.buttons.items()):  # 使用 list() 来避免修改字典时出错
+            for cood, value in list(ButtonManager.buttons.items()):  # 使用 list() 来避免修改字典时出错
                 if key in value and value[key] == btn:
                     value[key].deleteLater()# 删除按钮的GUI对象
-                    del self.buttons[cood]    # 删除字典中的该键值对       
+                    del ButtonManager.buttons[cood]    # 删除字典中的该键值对       
         newButtons = {}
         # 遍历字典的剩余元素，重新编号键
-        for i, (cood, item) in enumerate(self.buttons.items()):
+        for i, (cood, item) in enumerate(ButtonManager.buttons.items()):
             # 重新生成键，按顺序重新编号为 (i // colCount, i % colCount) 的形式
             newKey = (i // colLimit, i % colLimit)
             newButtons[newKey] = item
-        self.buttons = newButtons
+        ButtonManager.buttons = newButtons
+        print(ButtonManager.buttons)
         #endregion
 
 
-
-    def toggleCheckable(self, btns: list):
+    def toggleCheckable(btns: list):
         """_summary_ 改变按钮是否看选择的状态
 
         Args:
@@ -267,7 +221,8 @@ class ButtonManager():
             btn.setCheckable(not btn.isCheckable())
         #endregion
 
-    def setCheckedAll(self, btns: list, state: bool):
+
+    def setCheckedAll(btns: list, state: bool):
         """_summary_ 改变按钮是否点击的状态
 
         Args:
@@ -280,12 +235,36 @@ class ButtonManager():
             btn.setChecked(state)
         #endregion
 
+    def saveBtns(currentGame: str):
+        """_summary_ 保存按钮信息
 
-    def printBtns(self):
+        Args:
+            currentGame (str): _description_ 当前游戏名
+        """
+        #region 保存按钮信息
+        if currentGame in UserData.games:
+            newFolder = {}
+            for key, value in ButtonManager.buttons.items():
+                newFolder.update({
+                    value['name']:{
+                        'cood': {
+                            'row':key[0],
+                            'col':key[1]
+                        },
+                        'path': value['path'],
+                    }
+                })
+            UserData.games[currentGame]['folders'] = newFolder
+        # endregion
+
+    def editBtn(btn, newName: str, newPath: str):
+        if btn.cood in ButtonManager.buttons:
+            ButtonManager.buttons[btn.cood]['name'] = newName
+            ButtonManager.buttons[btn.cood]['path'] = newPath
+            btn.setText(newName)
+            btn.path = newPath
+
+    def printBtns():
         # for key, value in self.buttons.items():
         #     print(key,'name:', value['name'], 'path:', value['path'])
-        print(self.buttons)
-    
-
-class StyleManager:
-    btnStyle = GenericFunc.loadFile('./qss/other/button.qss')
+        print(ButtonManager.buttons)

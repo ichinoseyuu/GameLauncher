@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -27,7 +27,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#TipBoard {
-    border: 1px solid rgb(235, 235, 235);
+    border: 1px solid lightgray;
     background-color: rgb(250, 245, 245);
     border-radius: 4px;
 }
@@ -41,6 +41,18 @@
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>9</number>
+   </property>
+   <property name="topMargin">
+    <number>9</number>
+   </property>
+   <property name="rightMargin">
+    <number>9</number>
+   </property>
+   <property name="bottomMargin">
+    <number>9</number>
+   </property>
    <item>
     <widget class="QWidget" name="TipBoard" native="true">
      <layout class="QVBoxLayout" name="verticalLayout_2">

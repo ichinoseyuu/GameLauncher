@@ -12,10 +12,13 @@ class CMessage(QDialog, Ui_Message) :
         self.setAttribute(Qt.WA_TranslucentBackground) # 表示窗口具有透明效果
         self.setModal(True)
         self.setWindowModality(Qt.ApplicationModal)
-        self.setGeometry(GenericFunc.calculateGlobalCenterPos(self.geometry(),self.parent.geometry()))
 
         self.Title.setText(tip)
         self.MessageLabel.setText(message)
+        # 自动调整窗口大小
+        self.adjustSize()
+
+        self.setGeometry(GenericFunc.calculateGlobalCenterPos(self.geometry(),self.parent.geometry()))
 
         self.ButtonExit.clicked.connect(self.cancel)
         self.ButtonCancel.clicked.connect(self.cancel)

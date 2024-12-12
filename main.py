@@ -12,8 +12,10 @@ class MainWindow(QMainWindow):
         QMainWindow.__init__(self)
         UserData.init() # 初始化用户数据
         UserData.loadJson() # 加载用户数据
-        self.btnData = ButtonManager()
         self.ui = Ui_MainWindow()
+        self.tooltip = CToolTip()
+        ObjReference.obj['mainWindow'] = self.ui
+        ObjReference.obj['tooltip'] = self.tooltip
         self.ui.setupUi(self)  # 生成界面
         global widgets
         widgets = self.ui
@@ -42,9 +44,9 @@ class MainWindow(QMainWindow):
         widgets.ButtonExit.clicked.connect(self.exitApplication) # 右上角退出
 
         #左侧菜单栏按钮
-        widgets.ButtonHome.clicked.connect(lambda: widgets.StackedWidget.setCurrentIndex(0))
-        widgets.ButtonStart.clicked.connect(lambda: widgets.StackedWidget.setCurrentIndex(1))
-        widgets.ButtonAbout.clicked.connect(lambda: widgets.StackedWidget.setCurrentIndex(2))
+        widgets.ButtonHome.clicked.connect(lambda: self.swithPage(0))
+        widgets.ButtonStart.clicked.connect(lambda: self.swithPage(1))
+        widgets.ButtonAbout.clicked.connect(lambda: self.swithPage(2))
 
         #主页按钮
         widgets.ButtonPathSet.clicked.connect(self.chooseGameFile)
@@ -76,7 +78,12 @@ class MainWindow(QMainWindow):
         widgets.fadeAnim.start()
         print(self.currentGame)
         #endregion
-
+# region 切换页面函数
+    def swithPage(self, index: int):
+        if widgets.StackedWidget.currentIndex() == 1:
+            ButtonManager.saveBtns(self.currentGame)
+        widgets.StackedWidget.setCurrentIndex(index)
+# endregion
 
 # region homePage相关函数
 
@@ -110,8 +117,17 @@ class MainWindow(QMainWindow):
     # 切换游戏
     def swithGame(self):
         currntGame = widgets.GameComboBox.currentText()
+        # 如果已经删除所有项目，则将currentGame设为'none'
+        if currntGame == '':
+            self.isChooseGameFile = False
+            self.currentGame = 'none'
+            UserData.settings.setValue('current_game', 'none')
+            widgets.CurrentGamePic.clear()
+            ButtonManager.removeAllBtns()
+            return
         self.currentGame = currntGame
-        self.btnData.removeAllBtns()
+        ButtonManager.removeAllBtns()
+        UserData.settings.setValue('current_game', currntGame)
         if UserData.isNewGame(currntGame): return
         self.loadPic(UserData.games[self.currentGame]['path'], widgets.CurrentGamePic) # 加载游戏图片
         self.loadBtns()
@@ -123,26 +139,30 @@ class MainWindow(QMainWindow):
             self.tip = CDynamicTip('你还未添加游戏，无法删除', CDynamicTip.PosMode.Center, self)
             return
         # 删除游戏
-        UserData.games.pop(self.currentGame)
+        UserData.games.pop(UserData.settings.value('current_game'))
+        print(UserData.games)
+        # 删除combobox的游戏选项
+        gameName = widgets.GameComboBox.currentText()
         widgets.GameComboBox.removeItem(widgets.GameComboBox.currentIndex())
-        
+        self.tip = CDynamicTip(f'已删除 {gameName}', CDynamicTip.PosMode.Center, self)
+
         # 判断下一个游戏
-        currntGame = widgets.GameComboBox.currentText()
-        # 如果已经删除所有项目，则将currentGame设为'none'
-        if widgets.GameComboBox.currentText() == '':
-            self.isChooseGameFile = False
-            self.currentGame = 'none'
-            UserData.settings.setValue('current_game', 'none')
-            widgets.CurrentGamePic.clear()
-            self.btnData.removeAllBtns()
-            return
-        # 如果还剩有其他游戏，则切换到其他游戏
-        self.currentGame = currntGame
-        UserData.settings.setValue('current_game', currntGame)
-        self.btnData.removeAllBtns()
-        if UserData.isNewGame(currntGame): return
-        self.loadPic(UserData.games[self.currentGame]['path'], widgets.CurrentGamePic) # 加载游戏图片
-        self.loadBtns()
+        # currntGame = widgets.GameComboBox.currentText()
+        # # 如果已经删除所有项目，则将currentGame设为'none'
+        # if currntGame == '':
+        #     self.isChooseGameFile = False
+        #     self.currentGame = 'none'
+        #     UserData.settings.setValue('current_game', 'none')
+        #     widgets.CurrentGamePic.clear()
+        #     ButtonManager.removeAllBtns()
+        #     return
+        # # 如果还剩有其他游戏，则切换到其他游戏
+        # self.currentGame = currntGame
+        # UserData.settings.setValue('current_game', currntGame)
+        # ButtonManager.removeAllBtns()
+        # if UserData.isNewGame(currntGame): return
+        # self.loadPic(UserData.games[self.currentGame]['path'], widgets.CurrentGamePic) # 加载游戏图片
+        # self.loadBtns()
 
 # endregion
 
@@ -182,11 +202,11 @@ class MainWindow(QMainWindow):
         # 计算新按钮应该放置的位置
         row = self.ui.FolderGridLayout.count() // self.colLimit
         col = self.ui.FolderGridLayout.count() % self.colLimit
-        newBtn = CButton(name, path, self)
+        newBtn = CFolderButton(name, path, self)
+        newBtn.cood =(row, col)
         item ={(row, col):{'name': name, 'obj': newBtn, 'path': path}}
-        self.btnData.buttons.update(item)
+        ButtonManager.buttons.update(item)
         widgets.FolderGridLayout.addWidget(newBtn, row, col)
-        UserData.addFolder(self.currentGame, name, path, row, col)
 
 
     def loadBtns(self):
@@ -194,9 +214,9 @@ class MainWindow(QMainWindow):
             path = item['path']
             row = item['cood']['row']
             col = item['cood']['col']
-            newBtn = CButton(name, path, self)
+            newBtn = CFolderButton(name, path, self)
             item ={(row, col):{'name': name, 'obj': newBtn, 'path': path}}
-            self.btnData.buttons.update(item)
+            ButtonManager.buttons.update(item)
             widgets.FolderGridLayout.addWidget(newBtn, row, col)
 
 
@@ -209,21 +229,35 @@ class MainWindow(QMainWindow):
         obj.setPixmap(pixmap)  # 设置图标到标签中
 
 
+    # 编辑按钮
+    def edit(self, btn):
+        # 打开编辑对话框
+        dir = os.path.dirname(UserData.games[self.currentGame]['path'])
+        dialog = CFileDialog('', dir, CFileDialog.DialogMode.Folder ,self)
+        dialog.Title.setText('编辑文件夹')
+        dialog.PathLineEdit.setPlaceholderText('请选择要更改的路径')
+        dialog.NameLineEdit.setPlaceholderText('请输入要更改的名称')
+        reply, name, path = dialog.exec()
+        if reply == 1:
+            ButtonManager.editBtn(btn, name, path)
+            self.tip = CDynamicTip(f'成功修改文件夹', CDynamicTip.PosMode.Center, self)
+
+
     # 切换模式
     def toggleMode(self):
         self.isEditMode = not self.isEditMode
-        btns = self.btnData.getAllBtns()
+        btns = ButtonManager.getAllBtns()
         if self.isEditMode:
             # 将所有存在的按钮改为checkable状态
             widgets.ButtonSelectAll.setVisible(True)
             widgets.ButtonSelectAll.setChecked(True)
-            self.btnData.toggleCheckable(btns)
+            ButtonManager.toggleCheckable(btns)
             self.tip = CDynamicTip('切换到编辑模式', CDynamicTip.PosMode.Center, self)
             print('is edit mode')
         else:
             widgets.ButtonSelectAll.setVisible(False)
             widgets.ButtonSelectAll.setChecked(False)
-            self.btnData.toggleCheckable(btns)
+            ButtonManager.toggleCheckable(btns)
             self.tip = CDynamicTip('已退出编辑模式', CDynamicTip.PosMode.Center, self)
             print('not edit mode')
 
@@ -231,20 +265,23 @@ class MainWindow(QMainWindow):
     # 全选按钮
     def selectAllBtns(self):
         if not self.isEditMode: return
-        btns = self.btnData.getAllBtns()
+        btns = ButtonManager.getAllBtns()
         if widgets.ButtonSelectAll.isChecked():
-            self.btnData.setCheckedAll(btns, False)
+            ButtonManager.setCheckedAll(btns, False)
             self.tip = CDynamicTip('取消全选', CDynamicTip.PosMode.Center, self)
         else:
-            self.btnData.setCheckedAll(btns, True)
+            ButtonManager.setCheckedAll(btns, True)
             self.tip = CDynamicTip('全选', CDynamicTip.PosMode.Center, self)
 
 
     # 删除选中的按钮
     def removeSelectedButtons(self):
         if self.isEditMode:
-            coods,btns = self.btnData.getSelectedCoodAndBtn()
-            self.btnData.delSelectedBtns(btns,self.colLimit)
+            coods,btns = ButtonManager.getSelectedCoodAndBtn()
+            if len(coods) == 0:
+                self.tip = CDynamicTip('没有选择任何文件夹', CDynamicTip.PosMode.Center, self)
+                return
+            ButtonManager.delSelectedBtns(btns,self.colLimit)
             self.updateBtns(coods)
             self.tip = CDynamicTip('删除成功', CDynamicTip.PosMode.Center, self)
 
@@ -419,7 +456,7 @@ class MainWindow(QMainWindow):
             UserData.games.clear()
             UserData.settings.setValue('current_game', 'none')
             UserData.settings.setValue('theme', 'light')
-            self.btnData.buttons.clear()
+            ButtonManager.buttons.clear()
             UserData.saveJson()
             widgets.fadeAnim.setStartValue(1)
             widgets.fadeAnim.setEndValue(0)
@@ -461,6 +498,7 @@ class MainWindow(QMainWindow):
         message = CMessage('退出', '您确定要退出吗？', self)
         reply = message.exec()
         if reply == 1:
+            ButtonManager.saveBtns(self.currentGame)
             UserData.saveJson()
             widgets.fadeAnim.setStartValue(1)
             widgets.fadeAnim.setEndValue(0)
